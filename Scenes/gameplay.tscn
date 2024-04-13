@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://k8wx0s0eyp0y"]
+[gd_scene load_steps=10 format=3 uid="uid://k8wx0s0eyp0y"]
 
 [ext_resource type="PackedScene" uid="uid://cdqx02qvfabwu" path="res://Characters/player.tscn" id="1_pjsru"]
 [ext_resource type="PackedScene" uid="uid://cxhvfgrtcr30c" path="res://Assets/Scene/SpiritWell.tscn" id="2_4v357"]
 [ext_resource type="PackedScene" uid="uid://bapaha74bcbp1" path="res://Characters/minion.tscn" id="2_t5msq"]
+[ext_resource type="PackedScene" uid="uid://cyitoa3yhpeql" path="res://Scenes/ui.tscn" id="4_x8ebw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3rywa"]
 vertices = PackedVector3Array(-2.265, 0.425287, -2.265, -0.514999, 0.425287, -2.515, -0.764999, 0.425287, -18.265, -18.265, 0.425287, -18.265, -18.265, 0.425287, -0.0149994, -18.265, 0.425287, -0.0149994, -2.265, 0.425287, -0.0149994, -2.265, 0.425287, -2.265, -0.764999, 0.425287, -18.265, -0.514999, 0.425287, -2.515, 2.235, 0.425287, -2.515, 2.235, 0.425287, -2.515, 2.485, 0.425287, -0.764999, 18.235, 0.425287, -1.015, 2.235, 0.425287, -2.515, 18.235, 0.425287, -1.015, 18.235, 0.425287, -18.265, -0.764999, 0.425287, -18.265, -1.265, 4.67529, -1.515, -1.265, 4.67529, 1.485, 1.485, 4.67529, 1.485, 1.485, 4.67529, -1.515, -1.015, 0.425287, -1.265, -1.015, 0.425287, 1.235, 1.235, 0.425287, 1.235, 1.235, 0.425287, -1.265, 2.485, 0.425287, -0.764999, 2.485, 0.425287, 0.735001, 18.235, 0.425287, 0.985001, 18.235, 0.425287, -1.015, -0.764999, 0.425287, 18.235, -0.514999, 0.425287, 2.485, -2.265, 0.425287, 2.235, -18.265, 0.425287, -0.0149994, -18.265, 0.425287, 18.235, -2.265, 0.425287, 2.235, -2.265, 0.425287, -0.0149994, -18.265, 0.425287, -0.0149994, 2.235, 0.425287, 2.485, -0.514999, 0.425287, 2.485, -0.764999, 0.425287, 18.235, 18.235, 0.425287, 0.985001, 2.485, 0.425287, 0.735001, 2.235, 0.425287, 2.485, 18.235, 0.425287, 18.235, 18.235, 0.425287, 0.985001, 2.235, 0.425287, 2.485, -0.764999, 0.425287, 18.235)
@@ -22,23 +23,43 @@ points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 
 [node name="Gameplay" type="Node3D"]
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="minion" parent="Entities" instance=ExtResource("2_t5msq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.33209, 0, 1.06732)
+
+[node name="minion2" parent="Entities" instance=ExtResource("2_t5msq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.10058, 0, -2.56128)
+
+[node name="minion3" parent="Entities" instance=ExtResource("2_t5msq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79577, 0, 2.40378)
+
+[node name="minion4" parent="Entities" instance=ExtResource("2_t5msq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8005, 0, 7.03595)
+
+[node name="minion5" parent="Entities" instance=ExtResource("2_t5msq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.33769, 0, 8.617)
+
+[node name="minion6" parent="Entities" instance=ExtResource("2_t5msq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.11599, 0, 7.38564)
+
+[node name="EnvironmentNavigation" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_3rywa")
 
-[node name="Environments" type="Node3D" parent="NavigationRegion3D"]
+[node name="Environments" type="Node3D" parent="EnvironmentNavigation"]
 
-[node name="Ground" type="StaticBody3D" parent="NavigationRegion3D/Environments"]
+[node name="Ground" type="StaticBody3D" parent="EnvironmentNavigation/Environments"]
 
-[node name="GroundMesh" type="MeshInstance3D" parent="NavigationRegion3D/Environments/Ground"]
+[node name="GroundMesh" type="MeshInstance3D" parent="EnvironmentNavigation/Environments/Ground"]
 transform = Transform3D(18.765, 0, 0, 0, 18.765, 0, 0, 0, 18.765, 0, 0, 0)
 mesh = SubResource("PlaneMesh_ibxvn")
 skeleton = NodePath("../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Environments/Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentNavigation/Environments/Ground"]
 transform = Transform3D(18.765, 0, 0, 0, 18.765, 0, 0, 0, 18.765, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ngk08")
 
-[node name="SpiritWell" parent="NavigationRegion3D/Environments" instance=ExtResource("2_4v357")]
+[node name="SpiritWell" parent="EnvironmentNavigation/Environments" instance=ExtResource("2_4v357")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33045, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_pjsru")]
@@ -52,5 +73,8 @@ size = 17.0617
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fio2q")
 
-[node name="minion" parent="." instance=ExtResource("2_t5msq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.33209, 0, 1.06732)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_x8ebw")]
+mouse_filter = 2
+player = NodePath("../../Player")

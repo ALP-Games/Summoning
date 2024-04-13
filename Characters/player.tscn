@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://mlvnc2ro3582" path="res://icon.svg" id="1_f2et7"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ppsu3"]
-[ext_resource type="PackedScene" uid="uid://bx5xf8cja4kqm" path="res://follow_node.tscn" id="3_ym0o2"]
+[ext_resource type="PackedScene" uid="uid://bx5xf8cja4kqm" path="res://Scenes/Utils/follow_node.tscn" id="3_atcg0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
 
@@ -22,4 +22,4 @@ texture = ExtResource("1_f2et7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_gvsnl")
 
-[node name="FollowNode" parent="." instance=ExtResource("3_ym0o2")]
+[node name="FollowNode" parent="." instance=ExtResource("3_atcg0")]

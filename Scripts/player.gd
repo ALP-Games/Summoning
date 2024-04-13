@@ -5,6 +5,8 @@ class_name Player extends RigidBody3D
 @onready var camera: Camera3D = $Camera3D
 @onready var follow_node: FollowNode = $FollowNode
 
+var minions_selected: Array[Minion] = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -21,8 +23,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			var intersection := space_state.intersect_ray(\
 				PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd))
 			if intersection.size() > 0 and intersection.collider is Minion:
-				var minion := intersection.collider as Minion
-				follow_node.add_new_folower(minion)
+				minions_selected = [intersection.collider]
+			else:
+				minions_selected = []
+				#var minion := intersection.collider as Minion
+				#follow_node.add_new_folower(minion)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -33,4 +38,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("follow"):
+		for minion in minions_selected:
+			follow_node.add_new_folower(minion)
