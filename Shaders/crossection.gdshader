@@ -5,7 +5,8 @@ uniform sampler2D DEPTH_TEXTURE : source_color, hint_depth_texture;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 uniform sampler2D NORMAL_TEXTURE: hint_normal_roughness_texture, filter_linear;
 
-uniform float red_intensity:hint_range(0.0, 10.0, 0.01);
+uniform float tint_intensity:hint_range(0.0, 10.0, 0.01);
+uniform vec3 tint_color:source_color;
 //uniform float depth_range:hint_range(0.1, 100.0, 0.1);
 
 varying vec4 model_pos;
@@ -27,7 +28,7 @@ void fragment() {
 	
 	//vec4 world_pos = INV_PROJECTION_MATRIX * VIEW_MATRIX * MODEL_MATRIX * FRAGCOORD;
 	if (model_pos.y > 0.0) {
-		ALBEDO = (screen_color + vec3(1.0, 0.0, 0.0) * red_intensity) / (1.0 + red_intensity);
+		ALBEDO = (screen_color + tint_color * tint_intensity) / (1.0 + tint_intensity);
 	} else {
 		discard;
 	}

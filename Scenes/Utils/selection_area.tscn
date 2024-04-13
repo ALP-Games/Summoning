@@ -1,8 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://db3r6ev1h7fty"]
+[gd_scene load_steps=6 format=3 uid="uid://db3r6ev1h7fty"]
 
-[ext_resource type="SphereMesh" uid="uid://defyeuv50uyj3" path="res://Materials/selection_area.tres" id="1_hkjc2"]
+[ext_resource type="Material" uid="uid://b2b24qvjt20ep" path="res://Materials/shader_inner.tres" id="1_3i3ma"]
+[ext_resource type="Material" uid="uid://blv8q4j2srbqs" path="res://Materials/shader_outline.tres" id="2_v7d3t"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pbi32"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_j524l"]
+material = ExtResource("1_3i3ma")
+radius = 0.49
+
+[sub_resource type="SphereMesh" id="SphereMesh_jxh5u"]
+material = ExtResource("2_v7d3t")
 
 [node name="SelectionArea" type="Area3D"]
 collision_layer = 0
@@ -11,5 +19,8 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_pbi32")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_hkjc2")
+[node name="MeshInner" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_j524l")
+
+[node name="MeshOutline" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_jxh5u")

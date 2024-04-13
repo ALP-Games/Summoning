@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b2b24qvjt20ep"]
+
+[ext_resource type="Shader" path="res://Shaders/crossection.gdshader" id="1_28v0d"]
+
+[resource]
+render_priority = -1
+shader = ExtResource("1_28v0d")
+shader_parameter/tint_intensity = 0.1
+shader_parameter/tint_color = Color(1, 0, 0, 1)
