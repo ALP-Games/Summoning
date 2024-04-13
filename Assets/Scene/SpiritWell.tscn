@@ -13,12 +13,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110274, 0.0633366, 0)
 shape = SubResource("BoxShape3D_tr7st")
 
 [node name="Front" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
 shaded = true
 no_depth_test = true
 render_priority = 1
 texture = ExtResource("1_8kg22")
 
 [node name="Back" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71293, -0.170391)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.0110557, 1.00354, -1.55557)
 shaded = true
 texture = ExtResource("2_gposs")

@@ -2,9 +2,12 @@ class_name Player extends RigidBody3D
 
 @export var speed: float = 10.0
 @export var selection: PackedScene = null
+@export var model: Node3D = null
 
 @onready var camera: Camera3D = $Camera3D
 @onready var follow_node: FollowNode = $FollowNode
+
+var anim_player: AnimationPlayer = null
 
 var minions_selected: Array[Minion] = []
 var click_selection: Minion = null
@@ -16,7 +19,9 @@ var selection_radius: Area3D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	for child in model.get_children():
+		if child is AnimationPlayer:
+			anim_player = child
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -83,6 +88,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var movement_velocity := Vector3(input_dir.x, 0, input_dir.y) * speed
 	linear_velocity = movement_velocity
+	if movement_velocity.length() > 0:
+		anim_player.play("Walk")
+	else:
+		anim_player.pause()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
