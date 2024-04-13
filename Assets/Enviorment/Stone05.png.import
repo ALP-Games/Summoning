@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oqliq0ijvt44"
-path="res://.godot/imported/EnemyHut.png-4b9abc7d39a59d948d82da9025bde709.ctex"
+uid="uid://d3xf5sk63gnf1"
+path="res://.godot/imported/Stone05.png-a0eb781399663e819b14e94eb9195ae5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Png/EnemyHut.png"
-dest_files=["res://.godot/imported/EnemyHut.png-4b9abc7d39a59d948d82da9025bde709.ctex"]
+source_file="res://Assets/Enviorment/Stone05.png"
+dest_files=["res://.godot/imported/Stone05.png-a0eb781399663e819b14e94eb9195ae5.ctex"]
 
 [params]
 
