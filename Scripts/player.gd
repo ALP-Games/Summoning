@@ -9,8 +9,10 @@ class_name Player extends RigidBody3D
 var minions_selected: Array[Minion] = []
 var click_selection: Minion = null
 
+var selection_instantiated: bool = false
 var mouse_held: bool = false
 var world_click_pos: Vector3
+var selection_radius: Area3D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,26 +31,42 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process_mouse_motion(motion_event: InputEventMouseMotion) -> void:
 	if mouse_held:
 		var world_click := _process_world_click(1)
+		if not selection_instantiated and \
+		world_click.size() > 0 and world_click.position != world_click_pos:
+			selection_instantiated = true
+			selection_radius = selection.instantiate()
+			add_child(selection_radius)
+			selection_radius.global_position = world_click_pos
 		
+		if selection_instantiated:
+			var length := (Vector3(world_click.position) - world_click_pos).length() * 2
+			selection_radius.scale = Vector3(length, length, length)
 
 
 func _proccess_left_mouse_button(mouse_event: InputEventMouseButton) -> void:
 	if mouse_event.pressed:
+		mouse_held = true
 		var intersection := _process_world_click()
 		if intersection.size() > 0 and intersection.collider is Minion:
 			click_selection = intersection.collider
 		var world_click := _process_world_click(1)
 		if world_click.size() > 0:
-			mouse_held = true
 			world_click_pos = world_click.position
 	elif not mouse_event.pressed:
 		mouse_held = false
-		var intersection := _process_world_click()
-		# if we havent started drawing a box
-		if intersection.size() > 0 and intersection.collider == click_selection:
-			minions_selected = [intersection.collider]
+		minions_selected = []
+		if selection_instantiated:
+			var bodies := selection_radius.get_overlapping_bodies()
+			for body in bodies:
+				if body is Minion:
+					minions_selected.append(body)
+			selection_instantiated = false
+			selection_radius.queue_free()
 		else:
-			minions_selected = []
+			var intersection := _process_world_click()
+			# if we havent started drawing a box
+			if intersection.size() > 0 and intersection.collider == click_selection:
+				minions_selected = [intersection.collider]
 		click_selection = null
 
 

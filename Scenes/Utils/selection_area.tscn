@@ -3,6 +3,8 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_pbi32"]
 
 [node name="SelectionArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_pbi32")
