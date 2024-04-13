@@ -49,6 +49,7 @@ navigation_mesh = SubResource("NavigationMesh_3rywa")
 [node name="Environments" type="Node3D" parent="EnvironmentNavigation"]
 
 [node name="Ground" type="StaticBody3D" parent="EnvironmentNavigation/Environments"]
+collision_mask = 0
 
 [node name="GroundMesh" type="MeshInstance3D" parent="EnvironmentNavigation/Environments/Ground"]
 transform = Transform3D(18.765, 0, 0, 0, 18.765, 0, 0, 0, 18.765, 0, 0, 0)
@@ -61,6 +62,8 @@ shape = SubResource("ConvexPolygonShape3D_ngk08")
 
 [node name="SpiritWell" parent="EnvironmentNavigation/Environments" instance=ExtResource("2_4v357")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33045, 0)
+collision_layer = 2
+collision_mask = 0
 
 [node name="Player" parent="." instance=ExtResource("1_pjsru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0707283, 0, 3.74441)
