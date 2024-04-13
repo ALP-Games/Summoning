@@ -1,4 +1,4 @@
-class_name Player extends RigidBody3D
+class_name Player extends Character
 
 @export var speed: float = 10.0
 @export var selection: PackedScene = null

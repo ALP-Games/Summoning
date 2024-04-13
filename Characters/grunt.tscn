@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://mjrwasoqu5as"]
+
+[ext_resource type="Script" path="res://Scripts/grunt.gd" id="1_8ub7v"]
+[ext_resource type="Texture2D" uid="uid://mlvnc2ro3582" path="res://icon.svg" id="2_6fovb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
+
+[node name="grunt" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 7
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_8ub7v")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0.33, 0)
+modulate = Color(1, 1, 0, 1)
+shaded = true
+texture = ExtResource("2_6fovb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_gvsnl")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true

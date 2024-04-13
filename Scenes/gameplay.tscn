@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://k8wx0s0eyp0y"]
+[gd_scene load_steps=11 format=3 uid="uid://k8wx0s0eyp0y"]
 
+[ext_resource type="Script" path="res://Scripts/gameplay.gd" id="1_ecorm"]
 [ext_resource type="PackedScene" uid="uid://cdqx02qvfabwu" path="res://Characters/player.tscn" id="1_pjsru"]
-[ext_resource type="PackedScene" uid="uid://cxhvfgrtcr30c" path="res://Assets/Scene/SpiritWell.tscn" id="2_4v357"]
+[ext_resource type="PackedScene" uid="uid://cxhvfgrtcr30c" path="res://Buildings/spirit_well.tscn" id="2_4v357"]
 [ext_resource type="PackedScene" uid="uid://bapaha74bcbp1" path="res://Characters/minion.tscn" id="2_t5msq"]
 [ext_resource type="PackedScene" uid="uid://cyitoa3yhpeql" path="res://Scenes/ui.tscn" id="4_x8ebw"]
 
@@ -23,7 +24,10 @@ points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 
 [sub_resource type="Environment" id="Environment_fio2q"]
 
-[node name="Gameplay" type="Node3D"]
+[node name="Gameplay" type="Node3D" node_paths=PackedStringArray("spirit_well", "entities")]
+script = ExtResource("1_ecorm")
+spirit_well = NodePath("EnvironmentNavigation/Environments/SpiritWell")
+entities = NodePath("Entities")
 
 [node name="Entities" type="Node3D" parent="."]
 

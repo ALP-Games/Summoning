@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dug17j6l7v1ia"]
+
+[ext_resource type="Script" path="res://Scripts/grunt_spawner.gd" id="1_e0ejw"]
+[ext_resource type="PackedScene" uid="uid://mjrwasoqu5as" path="res://Characters/grunt.tscn" id="2_k5qde"]
+[ext_resource type="Texture2D" uid="uid://mlvnc2ro3582" path="res://icon.svg" id="3_cebw5"]
+[ext_resource type="Texture2D" uid="uid://dpiuixto42naq" path="res://Assets/Png/SpiritWell_Back.png" id="4_jnlls"]
+[ext_resource type="Script" path="res://Scripts/health_component.gd" id="5_bd51t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tr7st"]
+size = Vector3(3.537, 5.937, 3.537)
+
+[node name="GruntSpawner" type="StaticBody3D"]
+script = ExtResource("1_e0ejw")
+grunt = ExtResource("2_k5qde")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.063, 0)
+shape = SubResource("BoxShape3D_tr7st")
+
+[node name="Front" type="Sprite3D" parent="."]
+transform = Transform3D(-2.775, 2.42598e-07, 0, -1.71543e-07, -1.96222, 1.96222, 1.71543e-07, 1.96222, 1.96222, 0, -1.63106, 0)
+modulate = Color(0.521569, 0.254902, 0.0352941, 1)
+shaded = true
+no_depth_test = true
+render_priority = 1
+texture = ExtResource("3_cebw5")
+
+[node name="Back" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.0110557, -0.562309, -1.55557)
+shaded = true
+texture = ExtResource("4_jnlls")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_bd51t")
