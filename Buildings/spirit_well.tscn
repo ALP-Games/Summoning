@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxhvfgrtcr30c"]
+[gd_scene load_steps=9 format=3 uid="uid://cxhvfgrtcr30c"]
 
+[ext_resource type="Script" path="res://Scripts/spirit_well.gd" id="1_4njcq"]
 [ext_resource type="Texture2D" uid="uid://cyljdp88v5hrp" path="res://Assets/Png/SpiritWell_Front.png" id="1_8kg22"]
 [ext_resource type="Texture2D" uid="uid://dpiuixto42naq" path="res://Assets/Png/SpiritWell_Back.png" id="2_gposs"]
 [ext_resource type="Texture2D" uid="uid://qgkqebdhdn0i" path="res://Assets/Png/Spirit01.png" id="3_68ts0"]
@@ -30,6 +31,7 @@ material = SubResource("StandardMaterial3D_rq4hd")
 size = Vector2(0.74, 1)
 
 [node name="SpiritWell" type="StaticBody3D"]
+script = ExtResource("1_4njcq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110274, 0.0633366, 0)
