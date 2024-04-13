@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cwmwijhfx55y1" path="res://Assets/glTF/Necromancer.glb" id="3_qpja0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
+size = Vector3(0.65, 1, 0.65)
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("model")]
 collision_layer = 4

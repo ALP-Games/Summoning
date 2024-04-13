@@ -5,6 +5,10 @@ class_name FollowNode extends Node
 
 # this needs to construct a grid of dudes
 
+func remove_follower(minion: Minion) -> void:
+	minion.set_follow_node(null)
+	minion._state = minion.State.STAY
+
 
 func add_new_folower(minion: Minion) -> void:
 	minion.set_follow_node(self)

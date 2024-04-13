@@ -8,14 +8,15 @@ uniform sampler2D NORMAL_TEXTURE: hint_normal_roughness_texture, filter_linear;
 uniform float red_intensity:hint_range(0.0, 10.0, 0.01);
 //uniform float depth_range:hint_range(0.1, 100.0, 0.1);
 
-varying vec4 world_pos;
+varying vec4 model_pos;
 
 void vertex() {
-	world_pos = PROJECTION_MATRIX * vec4(VERTEX, 1.0);
+	model_pos = PROJECTION_MATRIX * vec4(VERTEX, 1.0);
 }
 
 void fragment() {
 	vec3 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
+	// most of this is not needed
 	vec3 normal = texture(NORMAL_TEXTURE, SCREEN_UV).rgb;
 	float rougness = texture(NORMAL_TEXTURE, SCREEN_UV).w;
 	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
@@ -25,7 +26,7 @@ void fragment() {
 	float linear_depth = -view.z / 100.0;
 	
 	//vec4 world_pos = INV_PROJECTION_MATRIX * VIEW_MATRIX * MODEL_MATRIX * FRAGCOORD;
-	if (world_pos.y > 0.0) {
+	if (model_pos.y > 0.0) {
 		ALBEDO = (screen_color + vec3(1.0, 0.0, 0.0) * red_intensity) / (1.0 + red_intensity);
 	} else {
 		discard;
