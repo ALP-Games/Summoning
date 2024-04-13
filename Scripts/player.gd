@@ -38,7 +38,7 @@ func _process_mouse_motion(motion_event: InputEventMouseMotion) -> void:
 			add_child(selection_radius)
 			selection_radius.global_position = world_click_pos
 		
-		if selection_instantiated:
+		if world_click.size() > 0 and selection_instantiated:
 			var length := (Vector3(world_click.position) - world_click_pos).length() * 2
 			selection_radius.scale = Vector3(length, length, length)
 

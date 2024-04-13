@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://db3r6ev1h7fty"]
+[gd_scene load_steps=3 format=3 uid="uid://db3r6ev1h7fty"]
+
+[ext_resource type="SphereMesh" uid="uid://defyeuv50uyj3" path="res://Materials/selection_area.tres" id="1_hkjc2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pbi32"]
 
@@ -8,3 +10,6 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_pbi32")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_hkjc2")

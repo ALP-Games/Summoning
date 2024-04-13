@@ -1,0 +1,11 @@
+[gd_resource type="SphereMesh" load_steps=3 format=3 uid="uid://defyeuv50uyj3"]
+
+[ext_resource type="Shader" path="res://Shaders/crossection.gdshader" id="1_t6o8d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6ory"]
+render_priority = -1
+shader = ExtResource("1_t6o8d")
+shader_parameter/red_intensity = 0.34
+
+[resource]
+material = SubResource("ShaderMaterial_u6ory")

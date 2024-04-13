@@ -11,6 +11,7 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 geometry_parsed_geometry_type = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5acg"]
+render_priority = 1
 albedo_color = Color(0.486275, 0.580392, 0.388235, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ibxvn"]
@@ -67,7 +68,6 @@ collision_mask = 0
 
 [node name="Player" parent="." instance=ExtResource("1_pjsru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0707283, 0, 3.74441)
-speed = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 9, 3.5)
