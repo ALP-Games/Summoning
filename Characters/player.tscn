@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdqx02qvfabwu"]
+[gd_scene load_steps=5 format=3 uid="uid://cdqx02qvfabwu"]
 
 [ext_resource type="Texture2D" uid="uid://mlvnc2ro3582" path="res://icon.svg" id="1_f2et7"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ppsu3"]
+[ext_resource type="PackedScene" uid="uid://bx5xf8cja4kqm" path="res://follow_node.tscn" id="3_ym0o2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
 
@@ -20,3 +21,5 @@ texture = ExtResource("1_f2et7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_gvsnl")
+
+[node name="FollowNode" parent="." instance=ExtResource("3_ym0o2")]

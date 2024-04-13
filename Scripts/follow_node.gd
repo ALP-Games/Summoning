@@ -1,20 +1,11 @@
 class_name FollowNode extends Node
 
-@export var master: RigidBody3D
+#@onready var owner: RigidBody3D
+@onready var master: RigidBody3D = get_parent()
+
+# this needs to construct a grid of dudes
 
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_child_entered_tree(node: Node) -> void:
-	if node is Minion:
-		# get closer to master
-		
+func add_new_folower(minion: Minion) -> void:
+	minion.set_follow_node(self)
+	minion.get_close_to_master(master)

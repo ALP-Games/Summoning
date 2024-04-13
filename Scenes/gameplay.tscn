@@ -52,6 +52,5 @@ size = 17.0617
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fio2q")
 
-[node name="minion" parent="." node_paths=PackedStringArray("_temp_master") instance=ExtResource("2_t5msq")]
+[node name="minion" parent="." instance=ExtResource("2_t5msq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.33209, 0, 1.06732)
-_temp_master = NodePath("../Player")

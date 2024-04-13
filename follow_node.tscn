@@ -4,5 +4,3 @@
 
 [node name="FollowNode" type="Node"]
 script = ExtResource("1_e3sj8")
-
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
