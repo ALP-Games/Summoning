@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://k8wx0s0eyp0y"]
+[gd_scene load_steps=7 format=3 uid="uid://k8wx0s0eyp0y"]
 
 [ext_resource type="PackedScene" uid="uid://cdqx02qvfabwu" path="res://Characters/player.tscn" id="1_pjsru"]
 [ext_resource type="PackedScene" uid="uid://cxhvfgrtcr30c" path="res://Assets/Scene/SpiritWell.tscn" id="2_4v357"]
+[ext_resource type="PackedScene" uid="uid://bapaha74bcbp1" path="res://Characters/minion.tscn" id="2_t5msq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5acg"]
 albedo_color = Color(0.486275, 0.580392, 0.388235, 1)
@@ -31,3 +32,7 @@ environment = SubResource("Environment_fio2q")
 
 [node name="SpiritWell" parent="." instance=ExtResource("2_4v357")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33045, 0)
+
+[node name="minion" parent="." node_paths=PackedStringArray("_temp_master") instance=ExtResource("2_t5msq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.33209, 0, 1.06732)
+_temp_master = NodePath("../Player")
