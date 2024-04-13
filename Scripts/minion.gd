@@ -1,6 +1,6 @@
 class_name Minion extends RigidBody3D
 
-@export var speed: float = 8.0
+@export var speed: float = 9.5
 @export var path_calc_time: float = 0.1
 @export var max_distance_from_master: float = 4.0
 var elapsed_time: float = 0
