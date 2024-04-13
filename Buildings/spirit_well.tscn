@@ -35,23 +35,23 @@ size = Vector2(0.74, 1)
 script = ExtResource("1_4njcq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11086, 0)
 shape = SubResource("CylinderShape3D_36jyr")
 
 [node name="Front" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, -0.821367)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.11086, -0.821367)
 shaded = true
 no_depth_test = true
-render_priority = 1
 texture = ExtResource("1_8kg22")
 
 [node name="Back" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.0110557, 1.20834, -2.28567)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.0110557, 3.3192, -2.28567)
 shaded = true
 render_priority = -1
 texture = ExtResource("2_gposs")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.625447, 0.780267, 0, -0.780267, 0.625447, 0, 0.166867, 0)
+transform = Transform3D(1, 0, 0, 0, 0.625447, 0.780267, 0, -0.780267, 0.625447, -0.0883014, 1.89263, -1.33406)
 amount = 50
 lifetime = 3.79
 process_material = SubResource("ParticleProcessMaterial_2jje3")

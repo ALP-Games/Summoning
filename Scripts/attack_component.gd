@@ -22,7 +22,6 @@ enum State {
 var attack_state: State = State.READY
 
 func _ready() -> void:
-	damage_hitbox.attack_component = self
 	damage_hitbox.body_entered.connect(attack_collision_entered)
 
 
