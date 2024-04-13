@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dpiuixto42naq" path="res://Assets/Png/SpiritWell_Back.png" id="2_gposs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tr7st"]
-size = Vector3(3.53711, 5.93726, 1)
+size = Vector3(3.537, 5.937, 3.537)
 
 [node name="SpiritWell" type="StaticBody3D"]
 
