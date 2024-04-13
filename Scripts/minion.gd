@@ -4,6 +4,7 @@ class_name Minion extends Character
 @export var path_calc_time: float = 0.1
 @export var max_distance_from_master: float = 4.0
 @export var model: Node3D = null
+@export var selection: Node3D = null
 @onready var x_scale = model.scale.x
 var elapsed_time: float = 0
 var anim_player: AnimationPlayer = null
@@ -23,6 +24,7 @@ var _follow_node: FollowNode = null
 func _ready() -> void:
 	_navigation_agent.target_desired_distance = 2.5
 	_navigation_agent.path_desired_distance = 2
+	selection.hide()
 	for child in model.get_children():
 		if child is AnimationPlayer:
 			anim_player = child
@@ -63,6 +65,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	else:
 		linear_velocity = Vector3.ZERO
 		anim_player.pause()
+		selection.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -76,7 +79,7 @@ func _process(delta: float) -> void:
 
 func set_follow_node(follow_node: FollowNode) -> void:
 	_follow_node = follow_node
-	
+	selection.show()
 
 
 func get_close_to_master(master: RigidBody3D) -> void:
