@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bapaha74bcbp1"]
+[gd_scene load_steps=8 format=3 uid="uid://bapaha74bcbp1"]
 
 [ext_resource type="Script" path="res://Scripts/minion.gd" id="1_wiej0"]
-[ext_resource type="Texture2D" uid="uid://mlvnc2ro3582" path="res://icon.svg" id="2_iqye0"]
+[ext_resource type="Script" path="res://Scripts/health_component.gd" id="3_iqdwt"]
 [ext_resource type="PackedScene" uid="uid://c15acg4vmyu25" path="res://Assets/glTF/Skull.glb" id="3_s37wb"]
+[ext_resource type="Script" path="res://Scripts/attack_component.gd" id="4_4dtfy"]
+[ext_resource type="Script" path="res://Scripts/attack_hitbox.gd" id="5_jceir"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
+size = Vector3(0.55, 1, 0.55)
 
-[node name="minion" type="RigidBody3D" node_paths=PackedStringArray("model")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_l4sje"]
+radius = 0.362354
+
+[node name="minion" type="RigidBody3D" node_paths=PackedStringArray("model", "health_component", "attack_component")]
 collision_layer = 4
 collision_mask = 3
 axis_lock_linear_y = true
@@ -15,16 +21,11 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_wiej0")
 model = NodePath("Skull")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0.33, 0)
-visible = false
-modulate = Color(0.937255, 0.160784, 0.921569, 1)
-shaded = true
-texture = ExtResource("2_iqye0")
+health_component = NodePath("HealthComponent")
+attack_component = NodePath("AttackComponent")
 
 [node name="Skull" parent="." instance=ExtResource("3_s37wb")]
-transform = Transform3D(2, 0, 0, 0, 1.41421, 1.41421, 0, -1.41421, 1.41421, -0.147258, 0.173817, 0.487533)
+transform = Transform3D(2, 0, 0, 0, 1.41421, 1.41421, 0, -1.41421, 1.41421, 0.0573544, 0.173817, 0.487533)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -32,3 +33,18 @@ shape = SubResource("BoxShape3D_gvsnl")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_iqdwt")
+
+[node name="AttackComponent" type="Node" parent="." node_paths=PackedStringArray("damage_hitbox")]
+script = ExtResource("4_4dtfy")
+damage_hitbox = NodePath("../AttackHitbox")
+damage = 10.0
+
+[node name="AttackHitbox" type="Area3D" parent="."]
+script = ExtResource("5_jceir")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_l4sje")
