@@ -2,6 +2,7 @@ class_name Minion extends RigidBody3D
 
 @export var speed: float = 8.0
 @export var path_calc_time: float = 0.1
+@export var max_distance_from_master: float = 4.0
 var elapsed_time: float = 0
 
 @onready var _navigation_agent: NavigationAgent3D = $NavigationAgent3D
@@ -34,7 +35,15 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			linear_velocity = direction * speed
 		else:
 			# Walk with master
-			_state = State.STAY
+			_state = State.WALK_WTIH_MASTER
+	elif _state == State.WALK_WTIH_MASTER:
+		var input_dir := Input.get_vector("left", "right", "up", "down")
+		var movement_velocity := Vector3(input_dir.x, 0, input_dir.y) * speed
+		linear_velocity = movement_velocity
+		if global_position.distance_to(_current_master.global_position) > \
+		max_distance_from_master:
+			get_close_to_master(_current_master)
+		# need to check if is too far from master
 	else:
 		linear_velocity = Vector3.ZERO
 
