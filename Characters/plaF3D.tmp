@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdqx02qvfabwu"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ppsu3"]
+[ext_resource type="PackedScene" uid="uid://db3r6ev1h7fty" path="res://Scenes/Utils/selection_area.tscn" id="2_ce61u"]
+[ext_resource type="PackedScene" uid="uid://bx5xf8cja4kqm" path="res://Scenes/Utils/follow_node.tscn" id="3_atcg0"]
+[ext_resource type="PackedScene" uid="uid://cwmwijhfx55y1" path="res://Assets/glTF/Necromancer.glb" id="3_qpja0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
+size = Vector3(0.65, 1, 0.65)
+
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("model")]
+collision_layer = 4
+collision_mask = 7
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_ppsu3")
+selection = ExtResource("2_ce61u")
+model = NodePath("Necromancer")
+
+[node name="Necromancer" parent="." instance=ExtResource("3_qpja0")]
+transform = Transform3D(2.5, 0, 0, 0, 1.76777, 1.76777, 0, -1.76777, 1.76777, 0, 0.373259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_gvsnl")
+
+[node name="FollowNode" parent="." instance=ExtResource("3_atcg0")]
