@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://lhaxq45w0fs2"]
+
+[ext_resource type="Script" path="res://Scripts/attack_hitbox.gd" id="1_hhcr4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v7vao"]
+
+[node name="AttackHitbox" type="Area3D"]
+script = ExtResource("1_hhcr4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_v7vao")

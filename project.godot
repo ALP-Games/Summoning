@@ -23,6 +23,7 @@ game_manager="*res://Scripts/game_manager.gd"
 
 folder_colors={
 "res://Assets/": "orange",
+"res://Configs/": "yellow",
 "res://Scripts/": "blue"
 }
 
