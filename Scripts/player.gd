@@ -8,6 +8,7 @@ class_name Player extends Character
 @onready var follow_node: FollowNode = $FollowNode
 
 var anim_player: AnimationPlayer = null
+@onready var x_scale = model.scale.x
 
 var minions_selected: Array[Minion] = []
 var click_selection: Minion = null
@@ -88,6 +89,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var movement_velocity := Vector3(input_dir.x, 0, input_dir.y) * speed
 	linear_velocity = movement_velocity
+	
+	var dir := sign(input_dir.x) as int
+	if dir:
+		model.scale.x = x_scale * dir
 	if movement_velocity.length() > 0:
 		anim_player.play("Walk")
 	else:
