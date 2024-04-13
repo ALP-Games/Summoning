@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://k8wx0s0eyp0y"]
+[gd_scene load_steps=9 format=3 uid="uid://k8wx0s0eyp0y"]
 
 [ext_resource type="PackedScene" uid="uid://cdqx02qvfabwu" path="res://Characters/player.tscn" id="1_pjsru"]
 [ext_resource type="PackedScene" uid="uid://cxhvfgrtcr30c" path="res://Assets/Scene/SpiritWell.tscn" id="2_4v357"]
+[ext_resource type="PackedScene" uid="uid://bapaha74bcbp1" path="res://Characters/minion.tscn" id="2_t5msq"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_3rywa"]
+vertices = PackedVector3Array(-2.265, 0.425287, -2.265, -0.514999, 0.425287, -2.515, -0.764999, 0.425287, -18.265, -18.265, 0.425287, -18.265, -18.265, 0.425287, -0.0149994, -18.265, 0.425287, -0.0149994, -2.265, 0.425287, -0.0149994, -2.265, 0.425287, -2.265, -0.764999, 0.425287, -18.265, -0.514999, 0.425287, -2.515, 2.235, 0.425287, -2.515, 2.235, 0.425287, -2.515, 2.485, 0.425287, -0.764999, 18.235, 0.425287, -1.015, 2.235, 0.425287, -2.515, 18.235, 0.425287, -1.015, 18.235, 0.425287, -18.265, -0.764999, 0.425287, -18.265, -1.265, 4.67529, -1.515, -1.265, 4.67529, 1.485, 1.485, 4.67529, 1.485, 1.485, 4.67529, -1.515, -1.015, 0.425287, -1.265, -1.015, 0.425287, 1.235, 1.235, 0.425287, 1.235, 1.235, 0.425287, -1.265, 2.485, 0.425287, -0.764999, 2.485, 0.425287, 0.735001, 18.235, 0.425287, 0.985001, 18.235, 0.425287, -1.015, -0.764999, 0.425287, 18.235, -0.514999, 0.425287, 2.485, -2.265, 0.425287, 2.235, -18.265, 0.425287, -0.0149994, -18.265, 0.425287, 18.235, -2.265, 0.425287, 2.235, -2.265, 0.425287, -0.0149994, -18.265, 0.425287, -0.0149994, 2.235, 0.425287, 2.485, -0.514999, 0.425287, 2.485, -0.764999, 0.425287, 18.235, 18.235, 0.425287, 0.985001, 2.485, 0.425287, 0.735001, 2.235, 0.425287, 2.485, 18.235, 0.425287, 18.235, 18.235, 0.425287, 0.985001, 2.235, 0.425287, 2.485, -0.764999, 0.425287, 18.235)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(26, 29, 27), PackedInt32Array(27, 29, 28), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 34), PackedInt32Array(32, 34, 33), PackedInt32Array(37, 36, 35), PackedInt32Array(40, 39, 38), PackedInt32Array(43, 42, 41), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 47)]
+geometry_parsed_geometry_type = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5acg"]
 albedo_color = Color(0.486275, 0.580392, 0.388235, 1)
@@ -9,25 +15,43 @@ albedo_color = Color(0.486275, 0.580392, 0.388235, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_ibxvn"]
 material = SubResource("StandardMaterial3D_g5acg")
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ngk08"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
 [sub_resource type="Environment" id="Environment_fio2q"]
 
 [node name="Gameplay" type="Node3D"]
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_3rywa")
+
+[node name="Environments" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="Ground" type="StaticBody3D" parent="NavigationRegion3D/Environments"]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="NavigationRegion3D/Environments/Ground"]
 transform = Transform3D(18.765, 0, 0, 0, 18.765, 0, 0, 0, 18.765, 0, 0, 0)
 mesh = SubResource("PlaneMesh_ibxvn")
+skeleton = NodePath("../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Environments/Ground"]
+transform = Transform3D(18.765, 0, 0, 0, 18.765, 0, 0, 0, 18.765, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ngk08")
+
+[node name="SpiritWell" parent="NavigationRegion3D/Environments" instance=ExtResource("2_4v357")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33045, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_pjsru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0707283, 0, 0.281854)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0707283, 0, 3.74441)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 9, 3.5)
 current = true
-fov = 50.9
 size = 17.0617
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fio2q")
 
-[node name="SpiritWell" parent="." instance=ExtResource("2_4v357")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33045, 0)
+[node name="minion" parent="." node_paths=PackedStringArray("_temp_master") instance=ExtResource("2_t5msq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.33209, 0, 1.06732)
+_temp_master = NodePath("../Player")
