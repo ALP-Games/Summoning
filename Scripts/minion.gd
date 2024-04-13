@@ -51,6 +51,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		
 		if movement_velocity.length() > 0:
 			anim_player.play("Walk")
+			if linear_velocity.x != 0:
+				model.scale.x = x_scale * sign(linear_velocity.x)
 		else:
 			anim_player.pause()
 			
