@@ -6,6 +6,10 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
 
 [node name="Player" type="RigidBody3D"]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 script = ExtResource("1_ppsu3")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
