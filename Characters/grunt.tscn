@@ -11,7 +11,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_ttru4"]
 radius = 0.384982
 
-[node name="grunt" type="RigidBody3D"]
+[node name="grunt" type="RigidBody3D" node_paths=PackedStringArray("health_component", "attack_component")]
 collision_layer = 4
 collision_mask = 3
 axis_lock_linear_y = true
@@ -20,6 +20,8 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_8ub7v")
 speed = 5.0
+health_component = NodePath("HealthComponent")
+attack_component = NodePath("AttackComponent")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0.33, 0)
