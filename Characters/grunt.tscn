@@ -1,17 +1,17 @@
 [gd_scene load_steps=8 format=3 uid="uid://mjrwasoqu5as"]
 
 [ext_resource type="Script" path="res://Scripts/grunt.gd" id="1_8ub7v"]
-[ext_resource type="Texture2D" uid="uid://mlvnc2ro3582" path="res://icon.svg" id="2_6fovb"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="3_nmtfi"]
 [ext_resource type="Script" path="res://Scripts/attack_component.gd" id="4_dtnw0"]
 [ext_resource type="Script" path="res://Scripts/attack_hitbox.gd" id="5_0ny7x"]
+[ext_resource type="PackedScene" uid="uid://do1bjduokysh" path="res://Assets/glTF/Warrior.glb" id="6_d36ua"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ttru4"]
 radius = 0.384982
 
-[node name="grunt" type="RigidBody3D" node_paths=PackedStringArray("health_component", "attack_component")]
+[node name="grunt" type="RigidBody3D" node_paths=PackedStringArray("model", "health_component", "attack_component")]
 collision_layer = 4
 collision_mask = 3
 axis_lock_linear_y = true
@@ -20,15 +20,10 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_8ub7v")
 speed = 5.0
+model = NodePath("Warrior")
 health_component = NodePath("HealthComponent")
 attack_component = NodePath("AttackComponent")
 faction = 1
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0.33, 0)
-modulate = Color(1, 1, 0, 1)
-shaded = true
-texture = ExtResource("2_6fovb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -50,3 +45,6 @@ script = ExtResource("5_0ny7x")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_ttru4")
+
+[node name="Warrior" parent="." instance=ExtResource("6_d36ua")]
+transform = Transform3D(2, 0, 0, 0, 1.41421, 1.41421, 0, -1.41421, 1.41421, -0.000793219, 0.149416, 0.278616)

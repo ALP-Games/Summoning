@@ -3,6 +3,9 @@ class_name Grunt extends Character
 @export var speed: float = 9.5
 @export var path_calc_time: float = 0.1
 @export var distance_to_enemy: float = 2.5
+@export var model: Node3D = null
+var anim_player: AnimationPlayer = null
+@onready var x_scale = model.scale.x
 var elapsed_time: float = 0
 
 @onready var _navigation_agent: NavigationAgent3D = $NavigationAgent3D
@@ -18,6 +21,9 @@ var _move_direction: Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for child in model.get_children():
+		if child is AnimationPlayer:
+			anim_player = child
 	_navigation_agent.target_desired_distance = distance_to_enemy
 	_navigation_agent.path_desired_distance = 2.0
 	if _target:
@@ -35,6 +41,12 @@ func _physics_process(delta: float) -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	linear_velocity = _move_direction * speed
+	if _move_direction.length() == 0:
+		anim_player.pause()
+	else:
+		anim_player.play("Walk")
+	if _move_direction.x != 0:
+		model.scale.x = x_scale * sign(_move_direction.x)
 
 
 func _process_going_to_target(delta: float) -> void:
