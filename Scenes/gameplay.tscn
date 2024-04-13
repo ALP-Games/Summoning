@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8wx0s0eyp0y"]
+
+[ext_resource type="PackedScene" uid="uid://cdqx02qvfabwu" path="res://Characters/player.tscn" id="1_pjsru"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5acg"]
+albedo_color = Color(0.486275, 0.580392, 0.388235, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ibxvn"]
+material = SubResource("StandardMaterial3D_g5acg")
+
+[sub_resource type="Environment" id="Environment_fio2q"]
+
+[node name="Gameplay" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(18.765, 0, 0, 0, 18.765, 0, 0, 0, 18.765, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ibxvn")
+
+[node name="Player" parent="." instance=ExtResource("1_pjsru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0707283, 0, 0.281854)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 9, 3.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fio2q")
