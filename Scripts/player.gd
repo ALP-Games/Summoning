@@ -60,6 +60,7 @@ func _proccess_left_mouse_button(mouse_event: InputEventMouseButton) -> void:
 			world_click_pos = world_click.position
 	elif not mouse_event.pressed:
 		mouse_held = false
+		set_minions_selection_off()
 		minions_selected = []
 		if selection_instantiated:
 			var bodies := selection_radius.get_overlapping_bodies()
@@ -73,6 +74,7 @@ func _proccess_left_mouse_button(mouse_event: InputEventMouseButton) -> void:
 			# if we havent started drawing a box
 			if intersection.size() > 0 and intersection.collider == click_selection:
 				minions_selected = [intersection.collider]
+		set_minions_selection_on()
 		click_selection = null
 
 
@@ -107,3 +109,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("stay"):
 		for minion in minions_selected:
 			follow_node.remove_follower(minion)
+
+func set_minions_selection_on() -> void:
+	for minion in minions_selected:
+		follow_node.set_selection_visible(minion, true)
+
+
+func set_minions_selection_off() -> void:
+	for minion in minions_selected:
+		follow_node.set_selection_visible(minion, false)

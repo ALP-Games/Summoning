@@ -13,3 +13,6 @@ func remove_follower(minion: Minion) -> void:
 func add_new_folower(minion: Minion) -> void:
 	minion.set_follow_node(self)
 	minion.get_close_to_master(master)
+
+func set_selection_visible(minion: Minion, visible:bool) -> void:
+	minion.set_selection_visible(visible)
