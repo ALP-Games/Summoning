@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d2j7046ypu7k2"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://by57v871c6f5w"]
 
-[ext_resource type="Texture2D" uid="uid://bn0tmsa0emxm4" path="res://Assets/glTF/Warrior_Warrior.png" id="1_4a0j2"]
+[ext_resource type="Texture2D" uid="uid://12n04a2iwn04" path="res://Assets/glTF/MegaSkull_MegaSkull.png" id="1_2rgj1"]
 
 [resource]
 transparency = 4
-albedo_texture = ExtResource("1_4a0j2")
+albedo_texture = ExtResource("1_2rgj1")
