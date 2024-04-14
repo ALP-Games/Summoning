@@ -22,6 +22,7 @@ enum State {
 var _state: State = State.IDLE
 var _target: Node3D = null
 var _move_direction: Vector3
+var _aggro_targets: Array[Node3D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,6 +36,7 @@ func _ready() -> void:
 		_navigation_agent.target_position = _target.global_position
 	attack_range.body_entered.connect(attack_range_entered)
 	aggro_range.body_entered.connect(aggro_range_entered)
+	aggro_range.body_exited.connect(aggro_range_left)
 
 
 func _physics_process(delta: float) -> void:
@@ -140,3 +142,7 @@ func aggro_range_entered(body: Node3D) -> void:
 	if not _target or global_position.distance_to(body.global_position) < \
 	global_position.distance_to(_target.global_position):
 		set_target(body)
+
+
+func aggro_range_left(body: Node3D) -> void:
+	pass

@@ -2,7 +2,9 @@ class_name Minion extends Character
 
 @export var speed: float = 9.5
 @export var path_calc_time: float = 0.1
-@export var max_distance_from_master: float = 4.0
+@export var move_with_master_distance: float = 4.0
+@export var max_distance_from_master: float = 10.0
+@export var max_distance_from_stay: float = 7.0
 @export var model: Node3D = null
 @export var selection: Node3D = null
 @onready var x_scale = model.scale.x
@@ -32,11 +34,12 @@ var _current_master: RigidBody3D = null
 var _follow_node: FollowNode = null
 var _attack_target: Node3D = null
 var _move_direction: Vector3
+var _aggro_targets: Array[Node3D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	init()
-	_navigation_agent.target_desired_distance = 1.0
+	_navigation_agent.target_desired_distance = 1.5
 	_navigation_agent.path_desired_distance = 1.0
 	selection.hide()
 	for child in model.get_children():
@@ -44,6 +47,7 @@ func _ready() -> void:
 			anim_player = child
 	attack_range.body_entered.connect(attack_range_entered)
 	aggro_range.body_entered.connect(aggro_range_entered)
+	aggro_range.body_exited.connect(aggro_range_left)
 	anim_player.play("Walk")
 
 
@@ -68,6 +72,13 @@ func _physics_process(delta: float) -> void:
 	
 	if _state != State.ATTACKING:
 		anim_player.play("Walk")
+	
+	
+	if _command_state == CommandState.FOLLOWING:
+		if global_position.distance_to(_current_master.global_position) > \
+		max_distance_from_master:
+			_state = State.GET_CLOSE_TO_MASTER
+	
 
 
 func _process_attacking(delta: float) -> void:
@@ -122,7 +133,7 @@ func _process_move_with_master(delta: float) -> void:
 	_move_direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
 		
 	if global_position.distance_to(_current_master.global_position) > \
-	max_distance_from_master:
+	move_with_master_distance:
 		_get_close_to_master(_current_master)
 
 
@@ -169,9 +180,14 @@ func attack_range_entered(body: Node3D) -> void:
 
 
 func aggro_range_entered(body: Node3D) -> void:
-	if not _attack_target or global_position.distance_to(body.global_position) < \
-	global_position.distance_to(_attack_target.global_position):
-		set_attack_target(body)
+	_aggro_targets.append(body)
+	find_and_set_closet_target()
+
+
+func aggro_range_left(body: Node3D) -> void:
+	_aggro_targets.erase(body)
+	if _attack_target and _attack_target == body:
+		find_and_set_closet_target()
 
 
 func set_attack_target(target: Node3D) -> void:
@@ -205,6 +221,29 @@ func connect_signal_to_target() -> void:
 		var building := _attack_target as Building
 		building.dying.connect(target_died)
 
+
+func find_and_set_closet_target() -> bool:
+	var new_target: Node3D = null
+	var shortest_dist: float = 1000000000000.0
+	for target in _aggro_targets:
+		var cur_dist := global_position.distance_to(target.global_position)
+		if (new_target and target is Character and new_target is Building) or \
+		(cur_dist < shortest_dist):
+			new_target = target
+			shortest_dist = cur_dist
+	if new_target:
+		set_attack_target(new_target)
+		return true
+	else:
+		# return back to master or stay position
+		_attack_target = null
+		return false
+
+
 func target_died(target: Node3D) -> void:
-	_state = State.STAY
-	_attack_target = null
+	if find_and_set_closet_target():
+		_state = State.GOING_TO_ATTACK_TARGET
+	elif _command_state == CommandState.FOLLOWING:
+		_state = State.GET_CLOSE_TO_MASTER
+	elif _command_state == CommandState.STAYING:
+		_state = State.STAY
