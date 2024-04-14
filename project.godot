@@ -89,3 +89,4 @@ summon_4={
 3d_physics/layer_4="HumanBuildings"
 3d_physics/layer_9="Undead"
 3d_physics/layer_10="Human"
+3d_physics/layer_11="UndeadPlayer"
