@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://2u51oq54ihjj"]
+
+[ext_resource type="Texture2D" uid="uid://bb4qmecd1dn6g" path="res://Assets/Enviorment/Stone04.png" id="1_wmx4w"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iafcq"]
+height = 0.660195
+radius = 0.215256
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lvyu"]
+transparency = 4
+albedo_texture = ExtResource("1_wmx4w")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wjapc"]
+material = SubResource("StandardMaterial3D_7lvyu")
+size = Vector2(0.098, 0.188)
+
+[node name="stone04" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.000318486, 0.0998943, -0.138902)
+shape = SubResource("CylinderShape3D_iafcq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.7, 0, 0, 0, 4.03051, 4.03051, 0, -4.03051, 4.03051, 0.167521, 0.320591, -0.287258)
+mesh = SubResource("QuadMesh_wjapc")
