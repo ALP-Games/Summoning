@@ -5,8 +5,14 @@ class_name Player extends Character
 @export var model: Node3D = null
 @export var resources: PlayerResources = null
 
+@export var summons: Array[SummonResource]
+@export var summon_cooldown: float = 0.5
+@export var summon_time: float = 0.4
+
 @onready var camera: Camera3D = $Camera3D
 @onready var follow_node: FollowNode = $FollowNode
+@onready var summon_cooldown_remaining: float = summon_cooldown
+@onready var summon_time_elapsed: float = summon_time
 
 var anim_player: AnimationPlayer = null
 @onready var x_scale: float = model.scale.x
@@ -90,6 +96,9 @@ func _process_world_click(collision_mask: int = 0xFFFFFFFF) -> Dictionary:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	if summon_time_elapsed < summon_time:
+		linear_velocity = Vector3.ZERO
+		return
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var movement_velocity := Vector3(input_dir.x, 0, input_dir.y) * speed
 	linear_velocity = movement_velocity
@@ -105,12 +114,21 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	summon_time_elapsed += delta
+	summon_cooldown_remaining -= delta
 	if Input.is_action_just_pressed("follow"):
 		for minion in minions_selected:
 			follow_node.add_new_folower(minion)
 	if Input.is_action_just_pressed("stay"):
 		for minion in minions_selected:
 			follow_node.remove_follower(minion)
+	if Input.is_action_just_pressed("summon_1") and \
+	summons.size() > 0 and summon_cooldown_remaining <= 0.0:
+		var world_pos := _process_world_click(1)
+		if summons[0].summon_at(self, world_pos.position):
+			summon_cooldown_remaining = summon_cooldown
+			summon_time_elapsed = 0.0
+			anim_player.play("Summon")
 
 
 func set_minions_selection_on() -> void:

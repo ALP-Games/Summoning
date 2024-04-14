@@ -12,5 +12,6 @@ func remove_follower(minion: Minion) -> void:
 func add_new_folower(minion: Minion) -> void:
 	minion.make_follow(master)
 
+
 func set_selection_visible(minion: Minion, visible:bool) -> void:
 	minion.set_selection_visible(visible)

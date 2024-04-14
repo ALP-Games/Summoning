@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdqx02qvfabwu"]
+[gd_scene load_steps=9 format=3 uid="uid://cdqx02qvfabwu"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ppsu3"]
 [ext_resource type="PackedScene" uid="uid://db3r6ev1h7fty" path="res://Scenes/Utils/selection_area.tscn" id="2_ce61u"]
 [ext_resource type="PackedScene" uid="uid://bx5xf8cja4kqm" path="res://Scenes/Utils/follow_node.tscn" id="3_atcg0"]
+[ext_resource type="Resource" uid="uid://cdsbj1dthdu3o" path="res://CustomResources/Summons/summon_skeleton.tres" id="3_p4kh1"]
 [ext_resource type="PackedScene" uid="uid://cwmwijhfx55y1" path="res://Assets/glTF/Necromancer.glb" id="3_qpja0"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="5_hfwx2"]
 [ext_resource type="Script" path="res://Scripts/player_resources.gd" id="6_scoy7"]
@@ -23,6 +24,7 @@ speed = 6.0
 selection = ExtResource("2_ce61u")
 model = NodePath("Necromancer")
 resources = NodePath("PlayerResources")
+summons = Array[Resource("res://CustomResources/Summons/summon_resource.gd")]([ExtResource("3_p4kh1")])
 health_component = NodePath("HealthComponent")
 
 [node name="Necromancer" parent="." instance=ExtResource("3_qpja0")]

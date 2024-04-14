@@ -12,10 +12,9 @@ height = 1.01301
 radius = 0.493087
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_l4sje"]
-radius = 0.362354
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7jjaf"]
-radius = 1.25
+radius = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5gm2d"]
 radius = 7.0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SummonResource" load_steps=3 format=3 uid="uid://cdsbj1dthdu3o"]
+
+[ext_resource type="Script" path="res://CustomResources/Summons/summon_resource.gd" id="1_wx1j8"]
+[ext_resource type="PackedScene" uid="uid://bapaha74bcbp1" path="res://Characters/minion.tscn" id="2_abo4x"]
+
+[resource]
+script = ExtResource("1_wx1j8")
+summoned_creature = ExtResource("2_abo4x")
+blue_souls = 10
+red_souls = 0

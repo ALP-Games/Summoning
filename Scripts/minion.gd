@@ -194,9 +194,10 @@ func aggro_range_left(body: Node3D) -> void:
 
 func set_attack_target(target: Node3D) -> void:
 	elapsed_time = 0
-	disconnect_signal_from_target()
-	_attack_target = target
-	connect_signal_to_target()
+	if _attack_target != target:
+		disconnect_signal_from_target()
+		_attack_target = target
+		connect_signal_to_target()
 	_state = State.GOING_TO_ATTACK_TARGET
 	if _navigation_agent:
 		_navigation_agent.target_position = _attack_target.global_position

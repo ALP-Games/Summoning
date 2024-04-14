@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DeathReward" load_steps=2 format=3 uid="uid://b5jly1ficudlp"]
 
-[ext_resource type="Script" path="res://CustomResources/death_reward.gd" id="1_8q7pv"]
+[ext_resource type="Script" path="res://CustomResources/DeathReward/death_reward.gd" id="1_8q7pv"]
 
 [resource]
 script = ExtResource("1_8q7pv")
