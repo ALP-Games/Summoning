@@ -16,7 +16,7 @@ radius = 0.384982
 [sub_resource type="SphereShape3D" id="SphereShape3D_oh58t"]
 radius = 1.25
 
-[node name="grunt" type="RigidBody3D" node_paths=PackedStringArray("model", "health_component", "attack_component")]
+[node name="grunt" type="RigidBody3D" node_paths=PackedStringArray("health_component", "attack_component")]
 collision_layer = 512
 collision_mask = 783
 axis_lock_linear_y = true
@@ -25,7 +25,6 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_8ub7v")
 speed = 5.0
-model = NodePath("Warrior")
 health_component = NodePath("HealthComponent")
 attack_component = NodePath("AttackComponent")
 faction = 1

@@ -21,7 +21,7 @@ func init() -> void:
 
 
 func deal_damage(dealt_damage:float) -> void:
-	assert(init_called, "Init was not called")
+aaaaaa	assert(init_called, "Init was not called")
 	if health_component:
 		health_component.deal_damage(dealt_damage)
 
