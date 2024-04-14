@@ -7,11 +7,14 @@ class_name Minion extends Character
 @export var max_distance_from_stay: float = 7.0
 @export var model: Node3D = null
 @export var selection: Node3D = null
-@onready var x_scale = model.scale.x
+@export var model_y_start: float = 0.0
+@export var summon_time: float = 0.5
 
 var elapsed_time: float = 0
 var anim_player: AnimationPlayer = null
 
+@onready var model_y_end = model.position.y
+@onready var x_scale = model.scale.x
 @onready var _navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var _stay_pos: Vector3 = global_position
 @onready var attack_range: Area3D = $AttackRange
@@ -22,6 +25,7 @@ enum CommandState {
 	STAYING
 }
 enum State {
+	GETTING_SUMMONED,
 	GET_CLOSE_TO_MASTER,
 	WALK_WTIH_MASTER,
 	STAY,
@@ -29,16 +33,17 @@ enum State {
 	ATTACKING
 }
 var _command_state: CommandState = CommandState.STAYING
-var _state: State = State.STAY
+var _state: State = State.GETTING_SUMMONED
 var _current_master: RigidBody3D = null
 var _follow_node: FollowNode = null
 var _attack_target: Node3D = null
 var _move_direction: Vector3
 var _aggro_targets: Array[Node3D]
+var _summon_tween: Tween = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	init()
+	super()
 	_navigation_agent.target_desired_distance = 1.5
 	_navigation_agent.path_desired_distance = 1.0
 	selection.hide()
@@ -49,6 +54,11 @@ func _ready() -> void:
 	aggro_range.body_entered.connect(aggro_range_entered)
 	aggro_range.body_exited.connect(aggro_range_left)
 	anim_player.play("Walk")
+	model.position.y = model_y_start
+	var raise_target = model.position
+	raise_target.y = model_y_end
+	_summon_tween = create_tween()
+	_summon_tween.tween_property(model, "position", raise_target, summon_time)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -67,6 +77,8 @@ func _physics_process(delta: float) -> void:
 		_process_going_to_attack_target(delta)
 	elif _state == State.ATTACKING:
 		_process_attacking(delta)
+	elif _state == State.GETTING_SUMMONED:
+		_process_getting_summoned(delta)
 	else:
 		_move_direction = Vector3.ZERO
 	
@@ -78,7 +90,13 @@ func _physics_process(delta: float) -> void:
 		if global_position.distance_to(_current_master.global_position) > \
 		max_distance_from_master:
 			_get_close_to_master(_current_master)
-	
+
+
+func _process_getting_summoned(delta: float) -> void:
+	summon_time -= delta
+	if summon_time <= 0:
+		_state = State.STAY
+		find_and_set_closet_target()
 
 
 func _process_attacking(delta: float) -> void:
@@ -140,6 +158,8 @@ func _process_move_with_master(delta: float) -> void:
 
 
 func make_follow(master: Player) -> void:
+	if _state == State.GETTING_SUMMONED:
+		return
 	if _command_state != CommandState.FOLLOWING:
 		_command_state = CommandState.FOLLOWING
 		_get_close_to_master(master)
@@ -226,6 +246,8 @@ func connect_signal_to_target() -> void:
 
 
 func find_and_set_closet_target() -> bool:
+	if _state == State.GETTING_SUMMONED:
+		return false
 	var new_target: Node3D = null
 	var shortest_dist: float = 1000000000000.0
 	for target in _aggro_targets:

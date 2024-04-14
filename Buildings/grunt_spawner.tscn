@@ -9,11 +9,12 @@
 height = 3.57001
 radius = 1.99782
 
-[node name="GruntSpawner" type="StaticBody3D"]
+[node name="GruntSpawner" type="StaticBody3D" node_paths=PackedStringArray("health_component")]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_e0ejw")
 grunt = ExtResource("2_k5qde")
+health_component = NodePath("HealthComponent")
 faction = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

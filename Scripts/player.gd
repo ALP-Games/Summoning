@@ -49,7 +49,7 @@ func _process_mouse_motion(motion_event: InputEventMouseMotion) -> void:
 		world_click.size() > 0 and world_click.position != world_click_pos:
 			selection_instantiated = true
 			selection_radius = selection.instantiate()
-			add_child(selection_radius)
+			game_manager.gameplay.entities.add_child(selection_radius)
 			selection_radius.global_position = world_click_pos
 		
 		if world_click.size() > 0 and selection_instantiated:

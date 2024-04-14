@@ -30,6 +30,7 @@ script = ExtResource("1_wiej0")
 speed = 5.5
 model = NodePath("Skull")
 selection = NodePath("Selection")
+model_y_start = -0.764
 health_component = NodePath("HealthComponent")
 attack_component = NodePath("AttackComponent")
 
