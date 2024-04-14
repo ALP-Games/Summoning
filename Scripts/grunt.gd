@@ -34,7 +34,6 @@ func _ready() -> void:
 	if _target:
 		_navigation_agent.target_position = _target.global_position
 	attack_range.body_entered.connect(attack_range_entered)
-	attack_range.monitoring = true
 	aggro_range.body_entered.connect(aggro_range_entered)
 
 
