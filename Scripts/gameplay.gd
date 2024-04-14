@@ -9,9 +9,5 @@ func _ready() -> void:
 	game_manager.gameplay = self
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func load_game_over() -> void:
 	get_tree().change_scene_to_file("res://Scenes/gameover.tscn")

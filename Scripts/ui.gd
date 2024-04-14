@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var amount := player.minions_selected.size()
 	selected_count_label.text = str(amount) + "x"
 	if amount == 1:

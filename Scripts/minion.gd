@@ -16,7 +16,6 @@ var anim_player: AnimationPlayer = null
 @onready var model_y_end = model.position.y
 @onready var x_scale = model.scale.x
 @onready var _navigation_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var _stay_pos: Vector3 = global_position
 @onready var attack_range: Area3D = $AttackRange
 @onready var aggro_range: Area3D = $AggroRange
 
@@ -30,8 +29,10 @@ enum State {
 	WALK_WTIH_MASTER,
 	STAY,
 	GOING_TO_ATTACK_TARGET,
-	ATTACKING
+	ATTACKING,
+	GOING_TO_STAY_POS
 }
+var _stay_pos: Vector3
 var _command_state: CommandState = CommandState.STAYING
 var _state: State = State.GETTING_SUMMONED
 var _current_master: RigidBody3D = null
@@ -44,6 +45,7 @@ var _summon_tween: Tween = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
+	_stay_pos = global_position
 	_navigation_agent.target_desired_distance = 1.5
 	_navigation_agent.path_desired_distance = 1.0
 	selection.hide()
@@ -61,7 +63,7 @@ func _ready() -> void:
 	_summon_tween.tween_property(model, "position", raise_target, summon_time)
 
 
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	linear_velocity = _move_direction * speed
 	var dir := sign(_move_direction.x) as int
 	if dir:
@@ -75,6 +77,8 @@ func _physics_process(delta: float) -> void:
 		_process_move_with_master(delta)
 	elif _state == State.GOING_TO_ATTACK_TARGET:
 		_process_going_to_attack_target(delta)
+	elif _state == State.GOING_TO_STAY_POS:
+		_process_goint_to_stay_pos(delta)
 	elif _state == State.ATTACKING:
 		_process_attacking(delta)
 	elif _state == State.GETTING_SUMMONED:
@@ -90,6 +94,31 @@ func _physics_process(delta: float) -> void:
 		if global_position.distance_to(_current_master.global_position) > \
 		max_distance_from_master:
 			_get_close_to_master(_current_master)
+	elif _command_state == CommandState.STAYING:
+		if global_position.distance_to(_stay_pos) > max_distance_from_stay:
+			_go_to_stay_target()
+
+
+func _process_goint_to_stay_pos(delta: float) -> void:
+	elapsed_time += delta
+	if elapsed_time >= path_calc_time and _attack_target:
+		elapsed_time -= path_calc_time
+		_navigation_agent.target_position = _stay_pos
+	
+	if not _navigation_agent.is_navigation_finished():
+		var nex_path_position := _navigation_agent.get_next_path_position()
+		var direction := global_position.direction_to(nex_path_position)
+		direction.y = 0
+		_move_direction = direction.normalized()
+	else:
+		if not find_and_set_closet_target():
+			_state = State.STAY
+
+
+func _go_to_stay_target() -> void:
+	_state = State.GOING_TO_STAY_POS
+	elapsed_time = 0
+	_navigation_agent.target_position = _stay_pos
 
 
 func _process_getting_summoned(delta: float) -> void:
