@@ -33,6 +33,10 @@ func _process(delta: float) -> void:
 	else:
 		necomancer_health_label.text = str(hp)
 	
+	
+	if game_manager.gameplay.spirit_well == null:
+		game_manager.gameplay.load_game_over()
+		return
 	var well_hp = game_manager.gameplay.spirit_well.health_component.current_hp
 	if well_hp < 0:
 		spirit_well_health_label.text = str(0)
