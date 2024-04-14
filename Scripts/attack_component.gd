@@ -5,6 +5,7 @@ class_name AttackComponent extends Node
 @export var attack_length: float = 0.2
 @export var attack_delay: float = 0.0
 @export var damage: float = 1.0
+@export var single_target: bool = false
 
 @onready var character: Character = get_parent()
 
@@ -70,6 +71,9 @@ func _process_delay(delta: float) -> void:
 
 
 func attack_collision_entered(body: Node3D) -> void:
+	if single_target and hit_entities.size() > 0:
+		return
+	
 	if hit_entities.find(body) != -1:
 		return
 	if body is Building:

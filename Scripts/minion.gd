@@ -22,6 +22,7 @@ var _follow_node: FollowNode = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	init()
 	_navigation_agent.target_desired_distance = 2.5
 	_navigation_agent.path_desired_distance = 2
 	selection.hide()

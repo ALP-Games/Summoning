@@ -20,6 +20,7 @@ var selection_radius: Area3D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	init()
 	for child in model.get_children():
 		if child is AnimationPlayer:
 			anim_player = child
