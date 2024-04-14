@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bapaha74bcbp1"]
+[gd_scene load_steps=11 format=3 uid="uid://bapaha74bcbp1"]
 
 [ext_resource type="Script" path="res://Scripts/minion.gd" id="1_wiej0"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="3_iqdwt"]
@@ -14,7 +14,13 @@ radius = 0.493087
 [sub_resource type="SphereShape3D" id="SphereShape3D_l4sje"]
 radius = 0.362354
 
-[node name="minion" type="RigidBody3D" node_paths=PackedStringArray("selection", "health_component", "attack_component")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_7jjaf"]
+radius = 1.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5gm2d"]
+radius = 7.0
+
+[node name="minion" type="RigidBody3D" node_paths=PackedStringArray("model", "selection", "health_component", "attack_component")]
 collision_layer = 256
 collision_mask = 783
 axis_lock_linear_y = true
@@ -22,7 +28,8 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_wiej0")
-selection = NodePath("Sprite3D")
+model = NodePath("Skull")
+selection = NodePath("Selection")
 health_component = NodePath("HealthComponent")
 attack_component = NodePath("AttackComponent")
 
@@ -45,12 +52,28 @@ damage_hitbox = NodePath("../AttackHitbox")
 damage = 10.0
 
 [node name="AttackHitbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 520
 script = ExtResource("5_jceir")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_l4sje")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Selection" type="Sprite3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 0.0842354, 0.0933733, 0.396119)
 texture = ExtResource("6_v28s1")
+
+[node name="AttackRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 520
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+shape = SubResource("SphereShape3D_7jjaf")
+
+[node name="AggroRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 520
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroRange"]
+shape = SubResource("SphereShape3D_5gm2d")
