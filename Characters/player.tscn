@@ -43,3 +43,4 @@ script = ExtResource("5_hfwx2")
 
 [node name="PlayerResources" type="Node" parent="."]
 script = ExtResource("6_scoy7")
+red_souls_amount = 60

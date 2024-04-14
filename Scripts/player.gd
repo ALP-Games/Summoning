@@ -122,10 +122,25 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("stay"):
 		for minion in minions_selected:
 			follow_node.remove_follower(minion)
+	
 	if Input.is_action_just_pressed("summon_1") and \
 	summons.size() > 0 and summon_cooldown_remaining <= 0.0:
 		var world_pos := _process_world_click(1)
 		if summons[0].summon_at(self, world_pos.position):
+			summon_cooldown_remaining = summon_cooldown
+			summon_time_elapsed = 0.0
+			anim_player.play("Summon")
+	if Input.is_action_just_pressed("summon_2") and \
+	summons.size() > 1 and summon_cooldown_remaining <= 0.0:
+		var world_pos := _process_world_click(1)
+		if summons[1].summon_at(self, world_pos.position):
+			summon_cooldown_remaining = summon_cooldown
+			summon_time_elapsed = 0.0
+			anim_player.play("Summon")
+	if Input.is_action_just_pressed("summon_3") and \
+	summons.size() > 2 and summon_cooldown_remaining <= 0.0:
+		var world_pos := _process_world_click(1)
+		if summons[2].summon_at(self, world_pos.position):
 			summon_cooldown_remaining = summon_cooldown
 			summon_time_elapsed = 0.0
 			anim_player.play("Summon")
