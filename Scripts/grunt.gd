@@ -124,8 +124,9 @@ func connect_signal_to_target() -> void:
 
 
 func target_died(target: Node3D) -> void:
-	_state = State.IDLE
-	_target = null
+	if not find_and_set_closet_target():
+		# need to set well as target
+		_state = State.IDLE
 
 
 func attack_range_entered(body: Node3D) -> void:
@@ -139,10 +140,30 @@ func attack_range_entered(body: Node3D) -> void:
 
 
 func aggro_range_entered(body: Node3D) -> void:
-	if not _target or global_position.distance_to(body.global_position) < \
-	global_position.distance_to(_target.global_position):
-		set_target(body)
+	_aggro_targets.append(body)
+	find_and_set_closet_target()
 
 
 func aggro_range_left(body: Node3D) -> void:
-	pass
+	_aggro_targets.erase(body)
+	if _target == body:
+		find_and_set_closet_target()
+
+
+func find_and_set_closet_target() -> bool:
+	var new_target: Node3D = null
+	var shortest_dist: float = 1000000000000.0
+	for target in _aggro_targets:
+		var cur_dist := global_position.distance_to(target.global_position)
+		if (new_target and target is Character and \
+		(new_target is Building or new_target is Player)) or \
+		(cur_dist < shortest_dist):
+			new_target = target
+			shortest_dist = cur_dist
+	if new_target:
+		set_target(new_target)
+		return true
+	else:
+		# return back to master or stay position
+		_target = null
+		return false

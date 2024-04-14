@@ -186,7 +186,7 @@ func aggro_range_entered(body: Node3D) -> void:
 
 func aggro_range_left(body: Node3D) -> void:
 	_aggro_targets.erase(body)
-	if _attack_target and _attack_target == body:
+	if _attack_target == body:
 		find_and_set_closet_target()
 
 
