@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cwmwijhfx55y1" path="res://Assets/glTF/Necromancer.glb" id="3_qpja0"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="5_hfwx2"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
-size = Vector3(0.65, 1, 0.65)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_edrsp"]
+height = 0.901686
+radius = 0.202021
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("model", "health_component")]
 collision_layer = 4
@@ -26,7 +27,7 @@ transform = Transform3D(2.5, 0, 0, 0, 1.76777, 1.76777, 0, -1.76777, 1.76777, 0,
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_gvsnl")
+shape = SubResource("CylinderShape3D_edrsp")
 
 [node name="FollowNode" parent="." instance=ExtResource("3_atcg0")]
 

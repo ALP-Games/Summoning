@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/attack_hitbox.gd" id="5_0ny7x"]
 [ext_resource type="PackedScene" uid="uid://do1bjduokysh" path="res://Assets/glTF/Warrior.glb" id="6_d36ua"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iafcq"]
+height = 0.972842
+radius = 0.175949
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ttru4"]
 radius = 0.384982
@@ -27,7 +29,7 @@ faction = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_gvsnl")
+shape = SubResource("CylinderShape3D_iafcq")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true

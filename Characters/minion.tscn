@@ -7,8 +7,9 @@
 [ext_resource type="Script" path="res://Scripts/attack_hitbox.gd" id="5_jceir"]
 [ext_resource type="Texture2D" uid="uid://b6pmhnq2evh0w" path="res://Assets/Png/Selection_UI.png" id="6_v28s1"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gvsnl"]
-size = Vector3(0.55, 1, 0.55)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xee23"]
+height = 1.01301
+radius = 0.493087
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_l4sje"]
 radius = 0.362354
@@ -31,7 +32,7 @@ transform = Transform3D(2, 0, 0, 0, 1.41421, 1.41421, 0, -1.41421, 1.41421, 0.05
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_gvsnl")
+shape = SubResource("CylinderShape3D_xee23")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
