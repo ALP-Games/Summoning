@@ -189,6 +189,8 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Minions/Minion1"]
 layout_mode = 2
@@ -268,7 +270,9 @@ offset_right = 9.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "10"
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect2" type="TextureRect" parent="Minions/Minion2/TextureRect/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
@@ -290,7 +294,9 @@ offset_right = 9.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "10"
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Minions/Minion2"]
 layout_mode = 2
@@ -370,7 +376,9 @@ offset_right = 9.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "10"
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect2" type="TextureRect" parent="Minions/Minion3/TextureRect/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
@@ -392,7 +400,9 @@ offset_right = 9.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "10"
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Minions/Minion3"]
 layout_mode = 2
