@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8kvypsuw6mlq"]
+[gd_scene load_steps=7 format=3 uid="uid://b8kvypsuw6mlq"]
 
 [ext_resource type="Script" path="res://Scenes/gameover.gd" id="1_33q4v"]
 [ext_resource type="Texture2D" uid="uid://bx7pxqsr8fbxd" path="res://Assets/Png/Menu/Gameover.png" id="2_5fjvm"]
 [ext_resource type="Texture2D" uid="uid://c82dbcw1xxlnn" path="res://Assets/Png/Menu/Restart_On.png" id="3_2l7jb"]
+[ext_resource type="Texture2D" uid="uid://bvffkok3oqwtb" path="res://Assets/Png/Menu/Restart_Off.png" id="3_xvtgy"]
 [ext_resource type="Texture2D" uid="uid://b3ncjmiscvkqy" path="res://Assets/Png/Menu/Quit_On.png" id="4_tqxc4"]
+[ext_resource type="Texture2D" uid="uid://m7a0ou4ffdkm" path="res://Assets/Png/Menu/Quit_Off.png" id="5_rlg46"]
 
 [node name="Gameover" type="Control"]
 layout_mode = 3
@@ -18,21 +20,29 @@ script = ExtResource("1_33q4v")
 position = Vector2(554, 195)
 texture = ExtResource("2_5fjvm")
 
-[node name="Restart" type="Button" parent="."]
+[node name="Restart" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 443.0
-offset_top = 338.0
-offset_right = 749.0
-offset_bottom = 495.0
-icon = ExtResource("3_2l7jb")
+offset_left = 423.0
+offset_top = 300.0
+offset_right = 721.0
+offset_bottom = 449.0
+texture_normal = ExtResource("3_xvtgy")
+texture_pressed = ExtResource("3_2l7jb")
+texture_hover = ExtResource("3_2l7jb")
+texture_disabled = ExtResource("3_xvtgy")
+texture_focused = ExtResource("3_2l7jb")
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 444.0
-offset_top = 488.0
-offset_right = 750.0
-offset_bottom = 645.0
-icon = ExtResource("4_tqxc4")
+offset_left = 423.0
+offset_top = 443.0
+offset_right = 721.0
+offset_bottom = 592.0
+texture_normal = ExtResource("5_rlg46")
+texture_pressed = ExtResource("4_tqxc4")
+texture_hover = ExtResource("4_tqxc4")
+texture_disabled = ExtResource("5_rlg46")
+texture_focused = ExtResource("4_tqxc4")
 
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
