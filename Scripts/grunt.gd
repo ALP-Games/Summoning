@@ -78,6 +78,7 @@ func _process_going_to_target(delta: float) -> void:
 
 func _process_attack(delta: float) -> void:
 	if attack_component.can_attack():
+		attack_range.monitoring = true
 		for body in attack_range.get_overlapping_bodies():
 			if body == _target:
 				anim_player.play("Attack")
@@ -93,6 +94,7 @@ func set_target(target: Node3D) -> void:
 	elapsed_time = 0
 	disconnect_signal_from_target()
 	_target = target
+	connect_signal_to_target()
 	_state = State.GOING_TO_TARGET
 	if _navigation_agent:
 		_navigation_agent.target_position = _target.global_position
@@ -130,7 +132,7 @@ func attack_range_entered(body: Node3D) -> void:
 		if _state == State.GOING_TO_TARGET:
 			_state = State.ATTACKING
 			_move_direction = Vector3.ZERO
-			attack_range.monitoring = false
+			attack_range.set_deferred("monitoring", false)
 		elif _state == State.ATTACKING:
 			pass
 
