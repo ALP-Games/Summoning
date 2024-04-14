@@ -46,14 +46,14 @@ debug_enabled = true
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_iqdwt")
-max_hp = 75.0
+max_hp = 40.0
 
 [node name="AttackComponent" type="Node" parent="." node_paths=PackedStringArray("damage_hitbox")]
 script = ExtResource("4_4dtfy")
 damage_hitbox = NodePath("../AttackHitbox")
 attack_length = 0.5
 attack_delay = 0.1
-damage = 7.0
+damage = 2.5
 
 [node name="AttackHitbox" type="Area3D" parent="."]
 collision_layer = 0

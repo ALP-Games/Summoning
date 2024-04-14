@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://4ww5rp282gd0"]
 
 [ext_resource type="Script" path="res://Scripts/grunt.gd" id="1_ahe6l"]
-[ext_resource type="Resource" uid="uid://b5jly1ficudlp" path="res://CustomResources/DeathReward/warrior_reward.tres" id="2_u7xbg"]
+[ext_resource type="Resource" uid="uid://cypv0ohtkgvmb" path="res://CustomResources/DeathReward/villager_reward.tres" id="2_tfny5"]
 [ext_resource type="PackedScene" uid="uid://bmy6q4s2emnyd" path="res://Assets/glTF/Viliger.glb" id="3_eb8h8"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="3_gysd1"]
 [ext_resource type="Script" path="res://Scripts/attack_component.gd" id="4_tk07p"]
@@ -30,7 +30,7 @@ axis_lock_angular_z = true
 script = ExtResource("1_ahe6l")
 speed = 5.0
 model = NodePath("Viliger")
-death_reward = ExtResource("2_u7xbg")
+death_reward = ExtResource("2_tfny5")
 health_component = NodePath("HealthComponent")
 attack_component = NodePath("AttackComponent")
 faction = 1
@@ -47,14 +47,14 @@ debug_enabled = true
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_gysd1")
-max_hp = 50.0
+max_hp = 20.0
 
 [node name="AttackComponent" type="Node" parent="." node_paths=PackedStringArray("damage_hitbox")]
 script = ExtResource("4_tk07p")
 damage_hitbox = NodePath("../AttackHitbox")
 attack_length = 0.5
 attack_delay = 0.2
-damage = 5.0
+damage = 3.0
 single_target = true
 
 [node name="AttackHitbox" type="Area3D" parent="."]

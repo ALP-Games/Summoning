@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SummonResource" load_steps=3 format=3 uid="uid://f73uh72wr7v4"]
+
+[ext_resource type="Script" path="res://CustomResources/Summons/summon_resource.gd" id="1_b7d7p"]
+[ext_resource type="PackedScene" uid="uid://dq3xc5e8e433t" path="res://Characters/mega_skull.tscn" id="2_gytay"]
+
+[resource]
+script = ExtResource("1_b7d7p")
+summoned_creature = ExtResource("2_gytay")
+blue_souls = 5
+red_souls = 40
