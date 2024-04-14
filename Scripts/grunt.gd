@@ -165,7 +165,7 @@ func find_and_set_closet_target() -> bool:
 		set_target(new_target)
 		return true
 	else:
-		_target = null
+		_target = game_manager.gameplay.spirit_well
 		return false
 
 
