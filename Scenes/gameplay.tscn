@@ -16,7 +16,6 @@ agent_radius = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5acg"]
 render_priority = 1
-shading_mode = 0
 albedo_color = Color(0.486275, 0.580392, 0.388235, 1)
 albedo_texture = ExtResource("3_cjenp")
 uv1_scale = Vector3(30.065, 30.065, 30.065)
@@ -88,8 +87,6 @@ transform = Transform3D(0.974609, 0.099842, 0.200422, -0.211312, 0.706158, 0.675
 light_color = Color(0.898039, 0.898039, 0.831373, 1)
 light_bake_mode = 0
 shadow_enabled = true
-shadow_bias = 0.005
-shadow_blur = 3.642
 
 [node name="Player" parent="." instance=ExtResource("1_pjsru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0707283, 0, 4.71194)
