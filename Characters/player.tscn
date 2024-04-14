@@ -10,7 +10,7 @@
 height = 0.901686
 radius = 0.202021
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("model", "health_component")]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("health_component")]
 collision_layer = 256
 collision_mask = 783
 axis_lock_linear_y = true
@@ -19,7 +19,6 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_ppsu3")
 selection = ExtResource("2_ce61u")
-model = NodePath("")
 health_component = NodePath("HealthComponent")
 
 [node name="Necromancer" parent="." instance=ExtResource("3_qpja0")]
