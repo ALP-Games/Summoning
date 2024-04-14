@@ -50,6 +50,8 @@ script = ExtResource("3_iqdwt")
 [node name="AttackComponent" type="Node" parent="." node_paths=PackedStringArray("damage_hitbox")]
 script = ExtResource("4_4dtfy")
 damage_hitbox = NodePath("../AttackHitbox")
+attack_length = 0.5
+attack_delay = 0.1
 damage = 10.0
 
 [node name="AttackHitbox" type="Area3D" parent="."]
