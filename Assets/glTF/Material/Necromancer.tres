@@ -4,5 +4,4 @@
 
 [resource]
 transparency = 4
-depth_draw_mode = 1
 albedo_texture = ExtResource("1_mtp32")
