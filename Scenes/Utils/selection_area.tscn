@@ -20,7 +20,9 @@ collision_mask = 256
 shape = SubResource("SphereShape3D_pbi32")
 
 [node name="MeshInner" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0152676, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("SphereMesh_j524l")
 
 [node name="MeshOutline" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.07, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("SphereMesh_jxh5u")
