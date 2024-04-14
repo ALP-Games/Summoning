@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n1qsw5smysi2"
-path="res://.godot/imported/MinionCarc03.png-b91512ee5af86cb40fd8a7d5aae497a0.ctex"
+uid="uid://bnfbmjkbtov7e"
+path="res://.godot/imported/MinionCard02.png-c3141c161ae2e3be944764daa1013799.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Png/Menu/MinionCarc03.png"
-dest_files=["res://.godot/imported/MinionCarc03.png-b91512ee5af86cb40fd8a7d5aae497a0.ctex"]
+source_file="res://Assets/Png/Menu/MinionCard02.png"
+dest_files=["res://.godot/imported/MinionCard02.png-c3141c161ae2e3be944764daa1013799.ctex"]
 
 [params]
 
