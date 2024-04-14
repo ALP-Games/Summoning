@@ -3,6 +3,7 @@ class_name Player extends Character
 @export var speed: float = 10.0
 @export var selection: PackedScene = null
 @export var model: Node3D = null
+@export var resources: PlayerResources = null
 
 @onready var camera: Camera3D = $Camera3D
 @onready var follow_node: FollowNode = $FollowNode
@@ -110,6 +111,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("stay"):
 		for minion in minions_selected:
 			follow_node.remove_follower(minion)
+
 
 func set_minions_selection_on() -> void:
 	for minion in minions_selected:
