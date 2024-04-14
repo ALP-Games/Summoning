@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccpi25qpe872"]
+
+[ext_resource type="Texture2D" uid="uid://bqgxvokytutc3" path="res://Assets/Enviorment/Tree02.png" id="1_m2k0n"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iafcq"]
+height = 1.10687
+radius = 0.215256
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lvyu"]
+transparency = 4
+albedo_texture = ExtResource("1_m2k0n")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wjapc"]
+material = SubResource("StandardMaterial3D_7lvyu")
+size = Vector2(0.158, 0.308)
+
+[node name="Tree03" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.0284052, 0.394251, 0.0326285)
+shape = SubResource("CylinderShape3D_iafcq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.7, 0, 0, 0, 4.03051, 4.03051, 0, -4.03051, 4.03051, -0.150208, 0.617842, -0.493989)
+mesh = SubResource("QuadMesh_wjapc")
