@@ -19,7 +19,7 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_ppsu3")
 selection = ExtResource("2_ce61u")
-model = NodePath("Necromancer")
+model = NodePath("")
 health_component = NodePath("HealthComponent")
 
 [node name="Necromancer" parent="." instance=ExtResource("3_qpja0")]

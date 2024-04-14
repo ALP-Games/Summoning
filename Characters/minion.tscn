@@ -20,7 +20,7 @@ radius = 1.25
 [sub_resource type="SphereShape3D" id="SphereShape3D_5gm2d"]
 radius = 7.0
 
-[node name="minion" type="RigidBody3D" node_paths=PackedStringArray("model", "selection", "health_component", "attack_component")]
+[node name="minion" type="RigidBody3D" node_paths=PackedStringArray("selection", "health_component", "attack_component")]
 collision_layer = 256
 collision_mask = 783
 axis_lock_linear_y = true
@@ -28,7 +28,6 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_wiej0")
-model = NodePath("Skull")
 selection = NodePath("Selection")
 health_component = NodePath("HealthComponent")
 attack_component = NodePath("AttackComponent")
