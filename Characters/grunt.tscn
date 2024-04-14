@@ -42,6 +42,7 @@ debug_enabled = true
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_nmtfi")
+max_hp = 50.0
 
 [node name="AttackComponent" type="Node" parent="." node_paths=PackedStringArray("damage_hitbox")]
 script = ExtResource("4_dtnw0")

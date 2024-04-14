@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_f1wrr"]
 [ext_resource type="Texture2D" uid="uid://mlvnc2ro3582" path="res://icon.svg" id="2_whpek"]
 
-[node name="UI" type="Control" node_paths=PackedStringArray("selected_count_label", "selection_info_label")]
+[node name="UI" type="Control" node_paths=PackedStringArray("selected_count_label", "selection_info_label", "necomancer_health_label", "spirit_well_health_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,8 @@ grow_vertical = 2
 script = ExtResource("1_f1wrr")
 selected_count_label = NodePath("Selection/PanelContainer/SelectionInfo/Count")
 selection_info_label = NodePath("Selection/PanelContainer/SelectionInfo/Info")
+necomancer_health_label = NodePath("Health/HBoxContainer/PanelContainer/NecroHelath/Number")
+spirit_well_health_label = NodePath("Health/HBoxContainer2/PanelContainer/WellHealth/Number")
 
 [node name="Selection" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -82,15 +84,15 @@ size_flags_horizontal = 3
 [node name="PanelContainer" type="PanelContainer" parent="Health/HBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Health/HBoxContainer/PanelContainer"]
+[node name="NecroHelath" type="HBoxContainer" parent="Health/HBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Health/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Number" type="Label" parent="Health/HBoxContainer/PanelContainer/NecroHelath"]
 layout_mode = 2
 text = "100
 "
 
-[node name="Label2" type="Label" parent="Health/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Info" type="Label" parent="Health/HBoxContainer/PanelContainer/NecroHelath"]
 layout_mode = 2
 text = ":Necromancer HP"
 
@@ -102,14 +104,14 @@ size_flags_horizontal = 3
 [node name="PanelContainer" type="PanelContainer" parent="Health/HBoxContainer2"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Health/HBoxContainer2/PanelContainer"]
+[node name="WellHealth" type="HBoxContainer" parent="Health/HBoxContainer2/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Health/HBoxContainer2/PanelContainer/HBoxContainer"]
+[node name="Info" type="Label" parent="Health/HBoxContainer2/PanelContainer/WellHealth"]
 layout_mode = 2
 text = "Spiritwell HP:"
 
-[node name="Label2" type="Label" parent="Health/HBoxContainer2/PanelContainer/HBoxContainer"]
+[node name="Number" type="Label" parent="Health/HBoxContainer2/PanelContainer/WellHealth"]
 layout_mode = 2
 text = "100"
 

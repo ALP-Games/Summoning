@@ -4,6 +4,8 @@ class_name UI extends Control
 
 @export var selected_count_label: Label = null
 @export var selection_info_label: Label = null
+@export var necomancer_health_label: Label = null
+@export var spirit_well_health_label: Label = null
 
 var selection_info_singular := "Minion selected"
 var selection_info_plural := "Minions selected"
@@ -22,3 +24,15 @@ func _process(delta: float) -> void:
 		selection_info_label.text = selection_info_singular
 	else:
 		selection_info_label.text = selection_info_plural
+	
+	var hp = player.health_component.current_hp
+	if hp < 0:
+		necomancer_health_label.text = str(0)
+	else:
+		necomancer_health_label.text = str(hp)
+	
+	var well_hp = game_manager.gameplay.spirit_well.health_component.current_hp
+	if well_hp < 0:
+		spirit_well_health_label.text = str(0)
+	else:
+		spirit_well_health_label.text = str(well_hp)

@@ -29,3 +29,4 @@ texture = ExtResource("3_hytb7")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_bd51t")
+max_hp = 500.0

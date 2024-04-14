@@ -63,3 +63,4 @@ draw_pass_1 = SubResource("QuadMesh_lm3q3")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_of3hs")
+max_hp = 1000.0

@@ -244,6 +244,6 @@ func target_died(target: Node3D) -> void:
 	if find_and_set_closet_target():
 		_state = State.GOING_TO_ATTACK_TARGET
 	elif _command_state == CommandState.FOLLOWING:
-		_state = State.GET_CLOSE_TO_MASTER
+		_get_close_to_master(_current_master)
 	elif _command_state == CommandState.STAYING:
 		_state = State.STAY
