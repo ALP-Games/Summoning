@@ -46,8 +46,8 @@ var _summon_tween: Tween = null
 func _ready() -> void:
 	super()
 	_stay_pos = global_position
-	_navigation_agent.target_desired_distance = 1.5
-	_navigation_agent.path_desired_distance = 1.0
+	#_navigation_agent.target_desired_distance = 1.5
+	#_navigation_agent.path_desired_distance = 1.0
 	selection.hide()
 	for child in model.get_children():
 		if child is AnimationPlayer:
@@ -66,7 +66,7 @@ func _ready() -> void:
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	if not attack_component.is_attacking():
 		if _move_direction.length() > 0:
-			anim_player.play("Move")
+			anim_player.play("Walk")
 		else:
 			anim_player.play("Idle")
 	linear_velocity = _move_direction * speed

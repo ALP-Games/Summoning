@@ -3,6 +3,7 @@ class_name GruntSpawner extends Building
 @export var spawn_interval: float = 5.0
 @export var grunt: PackedScene = null
 @export var spawn_offset: Vector3 = Vector3(0.0, 0.0, 3.0)
+@export var enable_spawn: bool = true
 
 var elapsed_time: float = 0.0
 
