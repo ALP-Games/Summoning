@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyitoa3yhpeql"]
+[gd_scene load_steps=3 format=3 uid="uid://cyitoa3yhpeql"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_f1wrr"]
+[ext_resource type="Texture2D" uid="uid://mlvnc2ro3582" path="res://icon.svg" id="2_whpek"]
 
-[node name="UI" type="Control"]
+[node name="UI" type="Control" node_paths=PackedStringArray("selected_count_label", "selection_info_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,8 +11,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f1wrr")
+selected_count_label = NodePath("Selection/PanelContainer/SelectionInfo/Count")
+selection_info_label = NodePath("Selection/PanelContainer/SelectionInfo/Info")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Selection" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -23,39 +26,171 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="ControlsInfo" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ControlsInfo" type="HBoxContainer" parent="Selection"]
 layout_mode = 2
 alignment = 1
 
-[node name="Follow" type="PanelContainer" parent="VBoxContainer/ControlsInfo"]
+[node name="Follow" type="PanelContainer" parent="Selection/ControlsInfo"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/ControlsInfo/Follow"]
+[node name="Label" type="Label" parent="Selection/ControlsInfo/Follow"]
 layout_mode = 2
 text = "Q to follow"
 horizontal_alignment = 1
 
-[node name="Stay" type="PanelContainer" parent="VBoxContainer/ControlsInfo"]
+[node name="Stay" type="PanelContainer" parent="Selection/ControlsInfo"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/ControlsInfo/Stay"]
+[node name="Label" type="Label" parent="Selection/ControlsInfo/Stay"]
 layout_mode = 2
 text = "E to stay"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Selection"]
 layout_mode = 2
 
-[node name="SelectionInfo" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+[node name="SelectionInfo" type="HBoxContainer" parent="Selection/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Count" type="Label" parent="VBoxContainer/PanelContainer/SelectionInfo"]
+[node name="Count" type="Label" parent="Selection/PanelContainer/SelectionInfo"]
 layout_mode = 2
 text = "28000000"
 
-[node name="Info" type="Label" parent="VBoxContainer/PanelContainer/SelectionInfo"]
+[node name="Info" type="Label" parent="Selection/PanelContainer/SelectionInfo"]
 layout_mode = 2
 text = "minions selected"
+
+[node name="Health" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Health"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="Health/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Health/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Health/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Health/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "100
+"
+
+[node name="Label2" type="Label" parent="Health/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = ":Necromancer HP"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Health"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Health/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Health/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Health/HBoxContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Spiritwell HP:"
+
+[node name="Label2" type="Label" parent="Health/HBoxContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "100"
+
+[node name="Control" type="Control" parent="Health/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Health/HBoxContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 45.0
+grow_vertical = 0
+
+[node name="Summoning" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Resources" type="HBoxContainer" parent="PanelContainer/Summoning"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Summoning/Resources"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Summoning/Resources/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Summoning/Resources/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "🔥:"
+
+[node name="Label2" type="Label" parent="PanelContainer/Summoning/Resources/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "10
+"
+
+[node name="Minions" type="HBoxContainer" parent="PanelContainer/Summoning"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Summoning/Minions"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Summoning/Minions/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_whpek")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "🔥"
+
+[node name="Label2" type="Label" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="ButtonContainer" type="HBoxContainer" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_whpek")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Control2" type="Control" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

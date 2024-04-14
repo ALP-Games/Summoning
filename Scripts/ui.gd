@@ -2,8 +2,8 @@ class_name UI extends Control
 
 @export var player: Player
 
-@onready var selected_count_label := $VBoxContainer/PanelContainer/SelectionInfo/Count
-@onready var selection_info_label := $VBoxContainer/PanelContainer/SelectionInfo/Info
+@export var selected_count_label: Label = null
+@export var selection_info_label: Label = null
 
 var selection_info_singular := "Minion selected"
 var selection_info_plural := "Minions selected"
