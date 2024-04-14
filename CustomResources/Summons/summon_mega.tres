@@ -7,4 +7,4 @@
 script = ExtResource("1_b7d7p")
 summoned_creature = ExtResource("2_gytay")
 blue_souls = 5
-red_souls = 40
+red_souls = 80

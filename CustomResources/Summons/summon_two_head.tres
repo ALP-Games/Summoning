@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_4nb5v")
 summoned_creature = ExtResource("2_oxmrr")
-blue_souls = 20
-red_souls = 20
+blue_souls = 40
+red_souls = 5

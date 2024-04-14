@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ppsu3"]
 [ext_resource type="PackedScene" uid="uid://db3r6ev1h7fty" path="res://Scenes/Utils/selection_area.tscn" id="2_ce61u"]
-[ext_resource type="PackedScene" uid="uid://bx5xf8cja4kqm" path="res://Scenes/Utils/follow_node.tscn" id="3_atcg0"]
 [ext_resource type="Resource" uid="uid://cdsbj1dthdu3o" path="res://CustomResources/Summons/summon_skeleton.tres" id="3_p4kh1"]
 [ext_resource type="PackedScene" uid="uid://cwmwijhfx55y1" path="res://Assets/glTF/Necromancer.glb" id="3_qpja0"]
 [ext_resource type="Resource" uid="uid://p4q44f3og1ov" path="res://CustomResources/Summons/summon_two_head.tres" id="4_5indm"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="5_hfwx2"]
 [ext_resource type="Resource" uid="uid://f73uh72wr7v4" path="res://CustomResources/Summons/summon_mega.tres" id="5_tldvf"]
 [ext_resource type="Script" path="res://Scripts/player_resources.gd" id="6_scoy7"]
+[ext_resource type="Script" path="res://Scripts/follow_node.gd" id="9_ngi0c"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_edrsp"]
 height = 0.901686
@@ -36,11 +36,12 @@ transform = Transform3D(2.5, 0, 0, 0, 1.76777, 1.76777, 0, -1.76777, 1.76777, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_edrsp")
 
-[node name="FollowNode" parent="." instance=ExtResource("3_atcg0")]
-
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_hfwx2")
 
 [node name="PlayerResources" type="Node" parent="."]
 script = ExtResource("6_scoy7")
 red_souls_amount = 60
+
+[node name="FollowNode" type="Node" parent="."]
+script = ExtResource("9_ngi0c")

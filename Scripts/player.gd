@@ -118,10 +118,12 @@ func _process(delta: float) -> void:
 	summon_cooldown_remaining -= delta
 	if Input.is_action_just_pressed("follow"):
 		for minion in minions_selected:
-			follow_node.add_new_folower(minion)
+			if minion != null:
+				follow_node.add_new_folower(minion)
 	if Input.is_action_just_pressed("stay"):
 		for minion in minions_selected:
-			follow_node.remove_follower(minion)
+			if minion != null:
+				follow_node.remove_follower(minion)
 	
 	if Input.is_action_just_pressed("summon_1") and \
 	summons.size() > 0 and summon_cooldown_remaining <= 0.0:
@@ -148,9 +150,11 @@ func _process(delta: float) -> void:
 
 func set_minions_selection_on() -> void:
 	for minion in minions_selected:
-		follow_node.set_selection_visible(minion, true)
+		if minion != null:
+			follow_node.set_selection_visible(minion, true)
 
 
 func set_minions_selection_off() -> void:
 	for minion in minions_selected:
-		follow_node.set_selection_visible(minion, false)
+		if minion != null:
+			follow_node.set_selection_visible(minion, false)
