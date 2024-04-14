@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://bapaha74bcbp1"]
+
+[ext_resource type="Script" path="res://Scripts/minion.gd" id="1_wiej0"]
+[ext_resource type="Script" path="res://Scripts/health_component.gd" id="3_iqdwt"]
+[ext_resource type="PackedScene" uid="uid://c15acg4vmyu25" path="res://Assets/glTF/Skull.glb" id="3_s37wb"]
+[ext_resource type="Script" path="res://Scripts/attack_component.gd" id="4_4dtfy"]
+[ext_resource type="Script" path="res://Scripts/attack_hitbox.gd" id="5_jceir"]
+[ext_resource type="Texture2D" uid="uid://b6pmhnq2evh0w" path="res://Assets/Png/Selection_UI.png" id="6_v28s1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xee23"]
+height = 1.01301
+radius = 0.493087
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l4sje"]
+radius = 0.362354
+
+[node name="minion" type="RigidBody3D" node_paths=PackedStringArray("selection", "health_component", "attack_component")]
+collision_layer = 256
+collision_mask = 783
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_wiej0")
+selection = NodePath("Sprite3D")
+health_component = NodePath("HealthComponent")
+attack_component = NodePath("AttackComponent")
+
+[node name="Skull" parent="." instance=ExtResource("3_s37wb")]
+transform = Transform3D(2, 0, 0, 0, 1.41421, 1.41421, 0, -1.41421, 1.41421, 0.0573544, 0.173817, 0.487533)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_xee23")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_iqdwt")
+
+[node name="AttackComponent" type="Node" parent="." node_paths=PackedStringArray("damage_hitbox")]
+script = ExtResource("4_4dtfy")
+damage_hitbox = NodePath("../AttackHitbox")
+damage = 10.0
+
+[node name="AttackHitbox" type="Area3D" parent="."]
+script = ExtResource("5_jceir")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_l4sje")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 0.0842354, 0.0933733, 0.396119)
+texture = ExtResource("6_v28s1")
