@@ -3,6 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://n1bkhkf5ffvb" path="res://Assets/glTF/Necromancer_Necromancer.png" id="1_mtp32"]
 
 [resource]
-transparency = 1
+transparency = 4
 depth_draw_mode = 1
 albedo_texture = ExtResource("1_mtp32")

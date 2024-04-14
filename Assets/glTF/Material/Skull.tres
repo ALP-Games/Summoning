@@ -3,6 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cb0trgb52x2c2" path="res://Assets/glTF/Skull_Skull.png" id="1_5jf0i"]
 
 [resource]
-transparency = 1
+transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("1_5jf0i")
