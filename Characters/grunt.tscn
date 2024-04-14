@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://mjrwasoqu5as"]
+[gd_scene load_steps=11 format=3 uid="uid://mjrwasoqu5as"]
 
 [ext_resource type="Script" path="res://Scripts/grunt.gd" id="1_8ub7v"]
+[ext_resource type="Resource" uid="uid://b5jly1ficudlp" path="res://CustomResources/warrior_reward.tres" id="2_jovm3"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="3_nmtfi"]
 [ext_resource type="Script" path="res://Scripts/attack_component.gd" id="4_dtnw0"]
 [ext_resource type="Script" path="res://Scripts/attack_hitbox.gd" id="5_0ny7x"]
@@ -29,6 +30,7 @@ axis_lock_angular_z = true
 script = ExtResource("1_8ub7v")
 speed = 5.0
 model = NodePath("Warrior")
+death_reward = ExtResource("2_jovm3")
 health_component = NodePath("HealthComponent")
 attack_component = NodePath("AttackComponent")
 faction = 1

@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdqx02qvfabwu"]
+[gd_scene load_steps=8 format=3 uid="uid://cdqx02qvfabwu"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ppsu3"]
 [ext_resource type="PackedScene" uid="uid://db3r6ev1h7fty" path="res://Scenes/Utils/selection_area.tscn" id="2_ce61u"]
 [ext_resource type="PackedScene" uid="uid://bx5xf8cja4kqm" path="res://Scenes/Utils/follow_node.tscn" id="3_atcg0"]
 [ext_resource type="PackedScene" uid="uid://cwmwijhfx55y1" path="res://Assets/glTF/Necromancer.glb" id="3_qpja0"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="5_hfwx2"]
+[ext_resource type="Script" path="res://Scripts/player_resources.gd" id="6_scoy7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_edrsp"]
 height = 0.901686
 radius = 0.202021
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("model", "health_component")]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("model", "resources", "health_component")]
 collision_layer = 256
 collision_mask = 783
 axis_lock_linear_y = true
@@ -21,6 +22,7 @@ script = ExtResource("1_ppsu3")
 speed = 6.0
 selection = ExtResource("2_ce61u")
 model = NodePath("Necromancer")
+resources = NodePath("PlayerResources")
 health_component = NodePath("HealthComponent")
 
 [node name="Necromancer" parent="." instance=ExtResource("3_qpja0")]
@@ -34,3 +36,6 @@ shape = SubResource("CylinderShape3D_edrsp")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_hfwx2")
+
+[node name="PlayerResources" type="Node" parent="."]
+script = ExtResource("6_scoy7")

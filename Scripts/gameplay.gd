@@ -1,6 +1,7 @@
 class_name Gameplay extends Node3D
 
 @export var spirit_well: SpiritWell = null
+@export var player: Player = null
 @export var entities: Node3D = null
 
 # Called when the node enters the scene tree for the first time.

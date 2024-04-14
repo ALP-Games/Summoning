@@ -2,7 +2,7 @@ class_name Minion extends Character
 
 @export var speed: float = 9.5
 @export var path_calc_time: float = 0.1
-@export var move_with_master_distance: float = 4.0
+@export var move_with_master_distance: float = 2.0
 @export var max_distance_from_master: float = 10.0
 @export var max_distance_from_stay: float = 7.0
 @export var model: Node3D = null
@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	if _command_state == CommandState.FOLLOWING:
 		if global_position.distance_to(_current_master.global_position) > \
 		max_distance_from_master:
-			_state = State.GET_CLOSE_TO_MASTER
+			_get_close_to_master(_current_master)
 	
 
 
@@ -119,13 +119,15 @@ func _process_get_close_to_master(delta: float) -> void:
 	if _current_master == null:
 		# get new master or become idle
 		pass
-	if not _navigation_agent.is_navigation_finished():
+	if not _navigation_agent.is_navigation_finished() and \
+	global_position.distance_to(_current_master.global_position) > move_with_master_distance:
 		var nex_path_position := _navigation_agent.get_next_path_position()
 		var direction := global_position.direction_to(nex_path_position)
 		direction.y = 0
 		_move_direction = direction.normalized()
 	else:
-		_state = State.WALK_WTIH_MASTER
+		if not find_and_set_closet_target():
+			_state = State.WALK_WTIH_MASTER
 
 
 func _process_move_with_master(delta: float) -> void:

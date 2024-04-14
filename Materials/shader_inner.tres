@@ -6,4 +6,4 @@
 render_priority = -1
 shader = ExtResource("1_28v0d")
 shader_parameter/tint_intensity = 0.1
-shader_parameter/tint_color = Color(1, 0, 0, 1)
+shader_parameter/tint_color = Color(0.513726, 0, 0.803922, 1)

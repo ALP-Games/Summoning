@@ -4,6 +4,7 @@ class_name Grunt extends Character
 @export var path_calc_time: float = 0.1
 @export var distance_to_enemy: float = 1.0
 @export var model: Node3D = null
+@export var death_reward: DeathReward = null
 
 @onready var x_scale = model.scale.x
 @onready var attack_range: Area3D = $AttackRange
@@ -164,6 +165,10 @@ func find_and_set_closet_target() -> bool:
 		set_target(new_target)
 		return true
 	else:
-		# return back to master or stay position
 		_target = null
 		return false
+
+
+func die() -> void:
+	death_reward.pay_out()
+	super()
