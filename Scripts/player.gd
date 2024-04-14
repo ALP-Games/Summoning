@@ -8,7 +8,7 @@ class_name Player extends Character
 @onready var follow_node: FollowNode = $FollowNode
 
 var anim_player: AnimationPlayer = null
-@onready var x_scale = model.scale.x
+@onready var x_scale: float = model.scale.x
 
 var minions_selected: Array[Minion] = []
 var click_selection: Minion = null

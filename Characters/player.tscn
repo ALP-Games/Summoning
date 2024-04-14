@@ -19,11 +19,11 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_ppsu3")
 selection = ExtResource("2_ce61u")
-model = NodePath("")
+model = NodePath("Necromancer")
 health_component = NodePath("HealthComponent")
 
 [node name="Necromancer" parent="." instance=ExtResource("3_qpja0")]
-transform = Transform3D(2.5, 0, 0, 0, 1.76777, 1.76777, 0, -1.76777, 1.76777, 0, 0.373259, 0)
+transform = Transform3D(2.5, 0, 0, 0, 1.76777, 1.76777, 0, -1.76777, 1.76777, 0, 0.373, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
