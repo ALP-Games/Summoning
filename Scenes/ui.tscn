@@ -160,7 +160,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("2_whpek")
 expand_mode = 1
@@ -168,6 +168,7 @@ stretch_mode = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -179,18 +180,11 @@ text = "5"
 
 [node name="ButtonContainer" type="HBoxContainer" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Control" type="Control" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer/ButtonContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+alignment = 1
 
 [node name="TextureRect2" type="TextureRect" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer/ButtonContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("2_whpek")
 expand_mode = 1
 stretch_mode = 4
-
-[node name="Control2" type="Control" parent="PanelContainer/Summoning/Minions/PanelContainer/VBoxContainer/ButtonContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
