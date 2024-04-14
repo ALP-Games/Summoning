@@ -55,7 +55,7 @@ func _ready() -> void:
 	attack_range.body_entered.connect(attack_range_entered)
 	aggro_range.body_entered.connect(aggro_range_entered)
 	aggro_range.body_exited.connect(aggro_range_left)
-	anim_player.play("Walk")
+	anim_player.play("Idle")
 	model.position.y = model_y_start
 	var raise_target = model.position
 	raise_target.y = model_y_end
@@ -64,6 +64,11 @@ func _ready() -> void:
 
 
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
+	if not attack_component.is_attacking():
+		if _move_direction.length() > 0:
+			anim_player.play("Move")
+		else:
+			anim_player.play("Idle")
 	linear_velocity = _move_direction * speed
 	var dir := sign(_move_direction.x) as int
 	if dir:
@@ -86,8 +91,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		_move_direction = Vector3.ZERO
 	
-	if _state != State.ATTACKING:
-		anim_player.play("Walk")
+	#if _state != State.ATTACKING:
+		#anim_player.play("Walk")
 	
 	
 	if _command_state == CommandState.FOLLOWING:
