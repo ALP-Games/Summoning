@@ -1,14 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8kvypsuw6mlq"]
+[gd_scene load_steps=4 format=3 uid="uid://b8kvypsuw6mlq"]
 
+[ext_resource type="Script" path="res://Scenes/gameover.gd" id="1_33q4v"]
 [ext_resource type="Texture2D" uid="uid://bx7pxqsr8fbxd" path="res://Assets/Png/Menu/Gameover.png" id="2_5fjvm"]
+[ext_resource type="Texture2D" uid="uid://c82dbcw1xxlnn" path="res://Assets/Png/Menu/Restart_On.png" id="3_2l7jb"]
 
-[node name="UI" type="Control"]
+[node name="Gameover" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_33q4v")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -28,3 +31,14 @@ text = "GAME OVER"
 [node name="Gameover" type="Sprite2D" parent="."]
 position = Vector2(577, 315)
 texture = ExtResource("2_5fjvm")
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 418.0
+offset_right = 786.0
+offset_bottom = 575.0
+scale = Vector2(0.76952, 0.544557)
+icon = ExtResource("3_2l7jb")
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
