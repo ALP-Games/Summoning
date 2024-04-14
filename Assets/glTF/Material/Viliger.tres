@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b4jf4c8jhag2h"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dd4j1chgdtphp"]
 
-[ext_resource type="Texture2D" uid="uid://bn0tmsa0emxm4" path="res://Assets/glTF/Warrior_Warrior.png" id="1_cvq0j"]
+[ext_resource type="Texture2D" uid="uid://bu27t8g5cbsk7" path="res://Assets/glTF/Viliger_Villiger.png" id="1_hhny2"]
 
 [resource]
 transparency = 4
-albedo_texture = ExtResource("1_cvq0j")
+albedo_texture = ExtResource("1_hhny2")

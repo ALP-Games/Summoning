@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyitoa3yhpeql"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_f1wrr"]
-[ext_resource type="Texture2D" uid="uid://d06saedaew1je" path="res://Assets/Png/Menu/MinionCarc01.png" id="2_8xvpa"]
+[ext_resource type="Texture2D" path="res://Assets/Png/Menu/MinionCarc01.png" id="2_8xvpa"]
 [ext_resource type="Texture2D" uid="uid://mlvnc2ro3582" path="res://icon.svg" id="2_whpek"]
 [ext_resource type="Texture2D" uid="uid://b46j5hh23gnas" path="res://Assets/Png/Menu/SoulsCounter.png" id="3_nh80b"]
 [ext_resource type="Texture2D" uid="uid://dbfqbx2ye5ti7" path="res://Assets/Png/Menu/SoulsCounterRed.png" id="4_isutx"]
@@ -131,10 +131,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Minions" type="HBoxContainer" parent="."]
-layout_mode = 2
-offset_top = 524.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -124.0
 offset_right = 66.0
-offset_bottom = 648.0
+grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Minions"]
 layout_mode = 2
