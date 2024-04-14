@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://mjrwasoqu5as"]
+[gd_scene load_steps=9 format=3 uid="uid://mjrwasoqu5as"]
 
 [ext_resource type="Script" path="res://Scripts/grunt.gd" id="1_8ub7v"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="3_nmtfi"]
@@ -13,9 +13,12 @@ radius = 0.175949
 [sub_resource type="SphereShape3D" id="SphereShape3D_ttru4"]
 radius = 0.384982
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_oh58t"]
+radius = 1.25
+
 [node name="grunt" type="RigidBody3D" node_paths=PackedStringArray("model", "health_component", "attack_component")]
-collision_layer = 4
-collision_mask = 3
+collision_layer = 512
+collision_mask = 783
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -40,8 +43,11 @@ script = ExtResource("3_nmtfi")
 [node name="AttackComponent" type="Node" parent="." node_paths=PackedStringArray("damage_hitbox")]
 script = ExtResource("4_dtnw0")
 damage_hitbox = NodePath("../AttackHitbox")
+damage = 5.0
 
 [node name="AttackHitbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 260
 script = ExtResource("5_0ny7x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
@@ -50,3 +56,10 @@ shape = SubResource("SphereShape3D_ttru4")
 
 [node name="Warrior" parent="." instance=ExtResource("6_d36ua")]
 transform = Transform3D(2, 0, 0, 0, 1.41421, 1.41421, 0, -1.41421, 1.41421, -0.000793219, 0.149416, 0.278616)
+
+[node name="AttackRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+shape = SubResource("SphereShape3D_oh58t")

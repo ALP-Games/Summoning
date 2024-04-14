@@ -64,4 +64,7 @@ stay={
 
 3d_physics/layer_1="Ground"
 3d_physics/layer_2="Environments"
-3d_physics/layer_3="Characters"
+3d_physics/layer_3="UndeadBuildings"
+3d_physics/layer_4="HumanBuildings"
+3d_physics/layer_9="Undead"
+3d_physics/layer_10="Human"

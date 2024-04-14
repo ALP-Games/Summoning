@@ -2,11 +2,14 @@ class_name Grunt extends Character
 
 @export var speed: float = 9.5
 @export var path_calc_time: float = 0.1
-@export var distance_to_enemy: float = 2.5
+@export var distance_to_enemy: float = 1.0
 @export var model: Node3D = null
-var anim_player: AnimationPlayer = null
+
 @onready var x_scale = model.scale.x
+@onready var attack_range: Area3D = $AttackRange
+
 var elapsed_time: float = 0
+var anim_player: AnimationPlayer = null
 
 @onready var _navigation_agent: NavigationAgent3D = $NavigationAgent3D
 
@@ -28,6 +31,8 @@ func _ready() -> void:
 	_navigation_agent.path_desired_distance = 2.0
 	if _target:
 		_navigation_agent.target_position = _target.global_position
+	attack_range.body_entered.connect(attack_range_entered)
+	attack_range.monitoring = true
 
 
 func _physics_process(delta: float) -> void:
@@ -62,8 +67,13 @@ func _process_going_to_target(delta: float) -> void:
 
 
 func _process_attack(delta: float) -> void:
-	#if global_position.distance_to() distance_to_enemy
-	pass
+	if attack_component.can_attack():
+		for body in attack_range.get_overlapping_bodies():
+			if body == _target:
+				var attack_direction = global_position.direction_to(_target.global_position)
+				attack_component.start_attack(attack_direction)
+	else:
+		set_target(_target)
 
 
 func _process(delta: float) -> void:
@@ -79,3 +89,15 @@ func set_target(target: Node3D) -> void:
 	_state = State.GOING_TO_TARGET
 	if _navigation_agent:
 		_navigation_agent.target_position = _target.global_position
+
+
+func attack_range_entered(body: Node3D) -> void:
+	if body == _target:
+		if _state == State.GOING_TO_TARGET:
+			_state = State.ATTACKING
+			attack_range.monitoring = false
+		elif _state == State.ATTACKING:
+			pass
+
+
+

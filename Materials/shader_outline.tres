@@ -5,5 +5,5 @@
 [resource]
 render_priority = -2
 shader = ExtResource("1_epg0j")
-shader_parameter/tint_intensity = 0.5
-shader_parameter/tint_color = Color(0.0823529, 0, 0, 1)
+shader_parameter/tint_intensity = 1.5
+shader_parameter/tint_color = Color(1, 1, 1, 1)
