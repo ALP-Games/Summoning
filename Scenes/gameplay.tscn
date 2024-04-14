@@ -18,7 +18,7 @@ agent_radius = 0.25
 render_priority = 1
 albedo_color = Color(0.486275, 0.580392, 0.388235, 1)
 albedo_texture = ExtResource("3_cjenp")
-uv1_scale = Vector3(25.96, 25.96, 25.96)
+uv1_scale = Vector3(30.065, 30.065, 30.065)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ibxvn"]
 material = SubResource("StandardMaterial3D_g5acg")
@@ -80,6 +80,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.838, 0, 28.953)
 
 [node name="SpiritWell" parent="EnvironmentNavigation/Environments" instance=ExtResource("2_4v357")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.412)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="EnvironmentNavigation/Environments"]
+transform = Transform3D(0.701133, -0.372207, 0.608173, 0, 0.852941, 0.522007, -0.71303, -0.365997, 0.598025, 0, 12.9392, 3.00862)
+shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_pjsru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0707283, 0, 4.71194)
