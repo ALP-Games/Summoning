@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dug17j6l7v1ia"]
 
 [ext_resource type="Script" path="res://Scripts/grunt_spawner.gd" id="1_e0ejw"]
-[ext_resource type="PackedScene" uid="uid://mjrwasoqu5as" path="res://Characters/grunt.tscn" id="2_k5qde"]
+[ext_resource type="PackedScene" uid="uid://mjrwasoqu5as" path="res://Characters/warrior.tscn" id="2_k5qde"]
 [ext_resource type="Texture2D" uid="uid://oqliq0ijvt44" path="res://Assets/Png/EnemyHut.png" id="3_hytb7"]
 [ext_resource type="Script" path="res://Scripts/health_component.gd" id="5_bd51t"]
 

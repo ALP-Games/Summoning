@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DeathReward" load_steps=2 format=3 uid="uid://cypv0ohtkgvmb"]
+
+[ext_resource type="Script" path="res://CustomResources/DeathReward/death_reward.gd" id="1_lwo06"]
+
+[resource]
+script = ExtResource("1_lwo06")
+blue_souls_amount = 7
+red_souls_amount = 0

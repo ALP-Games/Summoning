@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_8q7pv")
 blue_souls_amount = 15
-red_souls_amount = 0
+red_souls_amount = 5
