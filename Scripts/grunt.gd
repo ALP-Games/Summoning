@@ -49,15 +49,22 @@ func _physics_process(delta: float) -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	linear_velocity = _move_direction * speed
-	if _move_direction.length() == 0 and _state == State.IDLE:
+	if _move_direction.length() == 0 and _state != State.ATTACKING:
 		anim_player.play("Idle")
-	else:
+	elif _state == State.GOING_TO_TARGET:
 		anim_player.play("Walk")
 	if _move_direction.x != 0:
 		model.scale.x = x_scale * sign(_move_direction.x)
 
 
 func _process_going_to_target(delta: float) -> void:
+	elapsed_time += delta
+	if elapsed_time >= path_calc_time:
+		elapsed_time -= path_calc_time
+		if not _target:
+			return
+		_navigation_agent.target_position = _target.global_position
+	
 	if not _navigation_agent.is_navigation_finished():
 		var nex_path_position := _navigation_agent.get_next_path_position()
 		var direction := global_position.direction_to(nex_path_position)
@@ -76,18 +83,10 @@ func _process_attack(delta: float) -> void:
 				anim_player.play("Attack")
 				var attack_direction = global_position.direction_to(_target.global_position)
 				attack_component.start_attack(attack_direction)
-	elif _target != null:
+	elif _target != null and not attack_component.is_attacking():
 		set_target(_target)
 		attack_range.monitoring = true
-
-
-func _process(delta: float) -> void:
-	elapsed_time += delta
-	if elapsed_time >= path_calc_time:
-		elapsed_time -= path_calc_time
-		if not _target:
-			return
-		_navigation_agent.target_position = _target.global_position
+	
 
 
 func set_target(target: Node3D) -> void:
@@ -130,6 +129,7 @@ func attack_range_entered(body: Node3D) -> void:
 	if body == _target:
 		if _state == State.GOING_TO_TARGET:
 			_state = State.ATTACKING
+			_move_direction = Vector3.ZERO
 			attack_range.monitoring = false
 		elif _state == State.ATTACKING:
 			pass
