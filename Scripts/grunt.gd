@@ -78,7 +78,7 @@ func _process_going_to_target(delta: float) -> void:
 		pass
 
 
-func _process_attack(delta: float) -> void:
+func _process_attack(_delta: float) -> void:
 	if attack_component.can_attack():
 		attack_range.monitoring = true
 		for body in attack_range.get_overlapping_bodies():
@@ -124,7 +124,7 @@ func connect_signal_to_target() -> void:
 		building.dying.connect(target_died)
 
 
-func target_died(target: Node3D) -> void:
+func target_died(_target: Node3D) -> void:
 	if not find_and_set_closet_target():
 		# need to set well as target
 		_state = State.IDLE

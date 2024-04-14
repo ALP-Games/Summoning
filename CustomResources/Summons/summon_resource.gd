@@ -12,7 +12,8 @@ func summon_at(summoner: Player, position: Vector3) -> bool:
 		return false
 	summoner.resources.remove_souls(Souls.Type.BLUE, blue_souls)
 	summoner.resources.remove_souls(Souls.Type.RED, red_souls)
-	var creature_instance := summoned_creature.instantiate() as Node3D
+	var creature_instance := summoned_creature.instantiate() as Minion
 	game_manager.gameplay.entities.add_child(creature_instance)
 	creature_instance.global_position = position
+	creature_instance._stay_pos = position
 	return true
