@@ -30,6 +30,10 @@ func can_attack() -> bool:
 	return attack_state == State.READY
 
 
+func is_attacking() -> bool:
+	return attack_state != State.ON_COOLDOWN
+
+
 func start_attack(offset: Vector3) -> void:
 	if attack_state != State.READY:
 		return

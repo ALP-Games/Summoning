@@ -46,6 +46,8 @@ script = ExtResource("3_nmtfi")
 [node name="AttackComponent" type="Node" parent="." node_paths=PackedStringArray("damage_hitbox")]
 script = ExtResource("4_dtnw0")
 damage_hitbox = NodePath("../AttackHitbox")
+attack_length = 0.5
+attack_delay = 0.2
 damage = 5.0
 single_target = true
 
